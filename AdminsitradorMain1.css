@@ -2,8 +2,8 @@ body {
   background-color: #F2F2F2;
 }
 
-/* NAVBAR */
-.navbar--bg {
+/* ===== NAVBAR ===== */
+.navbar {
   background-color: #043959;
   padding: 15px 20px;
   color: white;
@@ -22,7 +22,7 @@ body {
   text-decoration: none;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 .hero {
   background-image: url('https://via.placeholder.com/1920x600');
   background-size: cover;
@@ -49,13 +49,13 @@ body {
   font-size: 1.2rem;
 }
 
-.hero__accion {
+.hero__action {
   font-size: 1.4rem;
   margin-top: 15px;
   font-weight: bold;
 }
 
-/* MENÚ Hola*/
+/* ===== MENU ===== */
 .menu {
   padding: 50px 0 20px 0;
   background-color: #F2F2F2;
@@ -104,7 +104,7 @@ body {
   margin: 0;
 }
 
-/* Responsive */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .menu__cards {
     flex-direction: column;
