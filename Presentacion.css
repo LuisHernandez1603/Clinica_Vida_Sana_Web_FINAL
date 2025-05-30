@@ -1,0 +1,452 @@
+/* ===== ESTILOS GENERALES ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #001f3f; /* Fondo azul marino */
+  color: white;
+  line-height: 1.6;
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Centramos más arriba para mostrar mejor las caras */
+  background-position: center top;
+
+  background-attachment: fixed;
+}
+
+/* Links generales */
+a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+/* Listas sin estilos por defecto */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: #043959;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.navbar__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar__logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.navbar__list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.navbar__item {}
+
+.navbar__link {
+  font-size: 0.9rem;
+  color: white;
+  padding: 0.3rem 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbar__link:hover,
+.navbar__link--highlight:hover {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar__link--highlight {
+  font-weight: 700;
+  color: #00bfff;
+  box-shadow: 0 0 10px #00bfff;
+  background-color: transparent;
+}
+/* ===== BOTÓN TOGGLE SOLO PARA MÓVIL ===== */
+.navbar__toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== NAVBAR RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar__toggle {
+    display: block;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .navbar__list {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;          /* PEGA AL BORDE IZQUIERDO */
+    right: 0;         /* PEGA AL BORDE DERECHO */
+    width: 100vw;     /* OCUPA TODO EL ANCHO DE LA VENTANA */
+    background-color: #04263b;
+    display: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    border-top: 2px solid #00bfff;
+    box-sizing: border-box;
+    z-index: 999;
+  }
+
+  .navbar__list--active {
+    display: flex;
+  }
+
+  .navbar__item {
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+
+  .navbar__container {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ===== SECCIONES ===== */
+.section {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 4rem 2rem;
+  background-color: rgba(4, 57, 89, 0.85); /* fondo semi-transparente */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  color: white;
+  text-align: center;
+}
+
+.section__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #00bfff;
+  text-transform: uppercase;
+  text-align: center !important; /* fuerza el centrado */
+  width: 100%;
+  display: block;
+}
+
+
+.section__text {
+ max-width: 700px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 42, 78, 0.85); /* fondo semi-transparente */
+  border-left: 4px solid #00bfff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: justify;
+}
+.section__txt {
+  font-size: 1.1rem;
+  max-width: 700;
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+/* ===== Principal ===== */
+.section--hero {
+  background-color: rgba(4, 57, 89, 0.7); /* fondo semi-transparente */
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  margin: 20px auto 80px;
+  max-width: 1100px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.hero__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #00bfff;
+}
+
+.hero__text {
+ max-width: 700px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 42, 78, 0.85); /* fondo semi-transparente */
+  border-left: 4px solid #00bfff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: justify;
+}
+
+.centros__item:hover,
+.historia__list li:hover {
+  background-color: #ccc;
+  color: #003366;
+}
+
+/*===NOTICIAS===*/
+.blog__post {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #00bfff;
+  background-color: rgba(0, 42, 78, 0.7); /* Azul oscuro semitransparente */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-align: left;
+  color: white;
+}
+
+.blog__post-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.blog__post-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: white;
+}
+
+/* ===== DOCTORES ===== */
+.doctores__container {
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* Texto introductorio en la sección de doctores */
+.section__text {
+  text-align: center;
+  color: white;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  line-height: 1.6;
+}
+
+.doctor__card {
+  background-color: rgba(0, 42, 78, 0.85); /* fondo semi-transparente */
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 191, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 191, 255, 0.3);
+}
+
+.doctor__img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.doctor__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.doctor__spec {
+  font-size: 1rem;
+  font-style: italic;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.doctor__desc {
+  font-size: 0.95rem;
+  color: white;
+}
+
+/* ===== HISTORIA DE LA CLÍNICA ===== */
+.historia {
+  padding: 2rem 1rem;
+  background-color: rgba(4, 57, 89, 0.85); /* fondo semi-transparente */
+  color: white;
+}
+
+.historia__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.historia__subtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #00bfff;
+}
+
+.historia__text {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  text-align: justify;
+}
+
+.historia__card {
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 42, 78, 0.85); /* fondo semi-transparente */
+  border-left: 4px solid #00bfff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: justify;
+}
+
+/* ===== FOOTER ===== */
+/* ===== FOOTER ===== */
+.footer {
+  background-color: rgba(4, 57, 89, 0.9); /* fondo semi-transparente */
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.footer__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.footer__address {
+  font-style: normal;
+  margin-bottom: 1rem;
+}
+
+.footer__link {
+  display: block;
+  color: #87cefa;
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  text-decoration: underline;
+}
+
+.footer__link:hover {
+  color: #00bfff;
+}
+
+.footer__copy {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 1.5rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar__container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar__list {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .navbar__link {
+    padding: 10px 15px;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero__title {
+    font-size: 2.3rem;
+  }
+
+  .hero__text {
+    font-size: 1rem;
+  }
+
+  .section__title {
+    font-size: 2rem;
+  }
+
+  .section__text {
+    font-size: 1rem;
+  }
+
+  .blog__post {
+    padding: 15px 20px;
+    max-width: 90%;
+  }
+
+  .centros__list,
+  .historia__list {
+    max-width: 90%;
+  }
+}
