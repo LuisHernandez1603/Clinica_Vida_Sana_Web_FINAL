@@ -1,4 +1,4 @@
-const form = document.getElementById('form-paciente');
+const form = document.querySelector('.registro-paciente__form');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -17,19 +17,42 @@ form.addEventListener('submit', async (e) => {
     const response = await fetch('http://localhost:3000/registrar-paciente', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, apellido, genero, edad })
+      body: JSON.stringify({ nombre, apellido, genero, edad }),
     });
 
+    // Lee el cuerpo solo una vez, tratando de parsear JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      // Si no es JSON, lee como texto plano
+      data = { mensaje: await response.text() };
+    }
+
     if (response.ok) {
-      const data = await response.json();
-      alert(data.mensaje);
+      mostrarMensajeBonito(data.mensaje || '¡Agregado con éxito!');
       form.reset();
     } else {
-      const errorData = await response.json();
-      alert('Error al registrar paciente: ' + (errorData.error || 'Error desconocido'));
+      mostrarMensajeBonito(data.error || 'Error al registrar paciente.');
     }
   } catch (error) {
-    alert('Error al conectar con el servidor');
-    console.error(error);
+    mostrarMensajeBonito('Error al conectar con el servidor');
+    console.error('Error:', error);
   }
 });
+
+function mostrarMensajeBonito(texto) {
+  const mensaje = document.getElementById('mensaje-exito');
+  const mensajeTexto = document.getElementById('mensaje-texto');
+  mensajeTexto.textContent = texto;
+  mensaje.style.display = 'block';
+
+  // Reiniciar animación si tienes CSS para eso (opcional)
+  mensaje.style.animation = 'none';
+  mensaje.offsetHeight; // Trigger reflow para reiniciar animación
+  mensaje.style.animation = 'fadeInOut 4s ease-in-out forwards';
+
+  setTimeout(() => {
+    mensaje.style.display = 'none';
+  }, 4000);
+}

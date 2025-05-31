@@ -79,3 +79,44 @@ body {
 .registro-paciente__boton:hover {
   background-color: #025E73;
 }
+
+/* Estilo para el mensaje de éxito */
+.registro-paciente__mensaje {
+  display: none;           /* Oculto por defecto */
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background-color: #28a745; /* Verde éxito */
+  color: white;
+  font-size: 1.5rem;       /* Más grande */
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+  animation: fadeInOut 4s ease-in-out forwards;
+  position: relative;
+  z-index: 10;
+}
+
+/* Animación para que aparezca y desaparezca suavemente */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+
+
+

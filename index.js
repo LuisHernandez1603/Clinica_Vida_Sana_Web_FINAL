@@ -1,8 +1,10 @@
 const express = require('express');
 const sql = require('mssql');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors()); // Habilita CORS para todas las peticiones
 
 const config = {
   user: 'clinica_user',
@@ -15,7 +17,6 @@ const config = {
   },
 };
 
-// Ruta POST para registrar paciente
 app.post('/registrar-paciente', async (req, res) => {
   const { nombre, apellido, genero, edad } = req.body;
 
@@ -24,12 +25,10 @@ app.post('/registrar-paciente', async (req, res) => {
   }
 
   try {
-    // Conexión a la base de datos
     await sql.connect(config);
 
-    // Inserción segura usando parámetros
     const result = await sql.query`
-      INSERT INTO DimPaciente(nombre, apellido, genero, edad)
+      INSERT INTO dbo.DimPaciente(nombre, apellido, genero, edad)
       VALUES (${nombre}, ${apellido}, ${genero}, ${edad})
     `;
 
@@ -40,7 +39,6 @@ app.post('/registrar-paciente', async (req, res) => {
   }
 });
 
-// Servidor escuchando en puerto 3000
 app.listen(3000, () => {
   console.log('Servidor escuchando en http://localhost:3000');
 });
