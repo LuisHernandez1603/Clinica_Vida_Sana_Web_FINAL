@@ -1,42 +1,76 @@
 <!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
+
 <html lang="es">
+<!-- Inicio del documento HTML, se especifica que el idioma es español -->
+
 <head>
+  <!-- Definición de la codificación para que soporte caracteres especiales y acentos -->
   <meta charset="UTF-8" />
+  
+  <!-- Configuración para que la página sea responsive en dispositivos móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Título que aparece en la pestaña del navegador -->
   <title>Registrar Paciente</title>
+  
+  <!-- Enlace al archivo CSS externo que contiene los estilos de esta página -->
   <link rel="stylesheet" href="RegistrarPaciente.css" />
 </head>
+
 <body>
+<!-- Cuerpo principal del documento -->
 
 <section class="registro-paciente">
+  <!-- Bloque principal BEM que contiene todo el formulario de registro -->
+  
+  <!-- Elemento del bloque que representa el título principal de la sección -->
   <h2 class="registro-paciente__titulo">Registrar Paciente</h2>
+  
+  <!-- Elemento del bloque destinado a mostrar mensajes de éxito (se muestra mediante JavaScript) -->
   <div class="registro-paciente__mensaje" id="mensaje-exito">
-  <span class="registro-paciente__icono">✔</span>
-  <span id="mensaje-texto"></span>
-</div>
+    <!-- Icono de verificación dentro del mensaje -->
+    <span class="registro-paciente__icono">✔</span>
+    <!-- Contenedor donde se insertará dinámicamente el texto del mensaje -->
+    <span id="mensaje-texto"></span>
+  </div>
 
-
+    <!-- Elemento del bloque destinado a mostrar mensajes de error en la conexion (se muestra mediante JavaScript) -->
+  <div class="registro-paciente__mensajeerror" id="mensaje-error">
+    <!-- Icono de verificación dentro del mensaje -->
+    <span class="registro-paciente__icono">⛔</span>
+    <!-- Contenedor donde se insertará dinámicamente el texto del mensaje -->
+    <span id="mensaje-error"></span>
+  </div>
+  <!-- Formulario del registro. Es un elemento del bloque -->
   <form id="form-paciente" class="registro-paciente__form" action="#" method="POST">
-
+    
+    <!-- Grupo de campos: contiene la etiqueta y el input correspondiente -->
     <div class="registro-paciente__grupo">
-      <label class="registro-paciente__label" for="Correo">Correo</label>
+      <!-- Etiqueta asociada al input de correo -->
+      <label class="registro-paciente__label" for="correo">Correo</label>
+      <!-- Campo de entrada de texto para el correo -->
       <input class="registro-paciente__input" type="text" id="correo" name="correo" maxlength="50" required />
     </div>
 
-
     <div class="registro-paciente__grupo">
+      <!-- Etiqueta asociada al input de nombre -->
       <label class="registro-paciente__label" for="nombre">Nombre</label>
+      <!-- Campo de entrada de texto para el nombre -->
       <input class="registro-paciente__input" type="text" id="nombre" name="nombre" maxlength="50" required />
     </div>
 
-    
     <div class="registro-paciente__grupo">
+      <!-- Etiqueta asociada al input de apellido -->
       <label class="registro-paciente__label" for="apellido">Apellido</label>
+      <!-- Campo de entrada de texto para el apellido -->
       <input class="registro-paciente__input" type="text" id="apellido" name="apellido" maxlength="50" required />
     </div>
 
     <div class="registro-paciente__grupo">
+      <!-- Etiqueta para el select de género -->
       <label class="registro-paciente__label" for="genero">Género</label>
+      <!-- Lista desplegable para seleccionar el género -->
       <select class="registro-paciente__input" id="genero" name="genero" required>
         <option value="">Seleccione</option>
         <option value="Masculino">Masculino</option>
@@ -46,14 +80,18 @@
     </div>
 
     <div class="registro-paciente__grupo">
+      <!-- Etiqueta para el input numérico de edad -->
       <label class="registro-paciente__label" for="edad">Edad</label>
+      <!-- Campo numérico para introducir la edad, con valor mínimo 0 -->
       <input class="registro-paciente__input" type="number" id="edad" name="edad" min="0" required />
     </div>
 
+    <!-- Botón para enviar el formulario -->
     <button class="registro-paciente__boton" type="submit">Registrar</button>
   </form>
 </section>
 
+<!-- Script externo que gestiona la lógica con DOM al enviar el formulario -->
 <script src="registrarp.js"></script>
 
 </body>
