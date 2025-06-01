@@ -2,13 +2,13 @@ const form = document.querySelector('.registro-paciente__form');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-
+   const correo = document.getElementById('correo').value.trim();
   const nombre = document.getElementById('nombre').value.trim();
   const apellido = document.getElementById('apellido').value.trim();
   const genero = document.getElementById('genero').value;
   const edad = parseInt(document.getElementById('edad').value, 10);
 
-  if (!nombre || !apellido || !genero || !edad) {
+  if (!nombre || !apellido || !genero || !edad ||!correo) {
     alert('Por favor, completa todos los campos.');
     return;
   }
@@ -17,7 +17,7 @@ form.addEventListener('submit', async (e) => {
     const response = await fetch('http://localhost:3000/registrar-paciente', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, apellido, genero, edad }),
+      body: JSON.stringify({ nombre, apellido, genero, edad,correo }),
     });
 
     // Lee el cuerpo solo una vez, tratando de parsear JSON
