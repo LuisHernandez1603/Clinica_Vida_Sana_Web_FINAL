@@ -13,6 +13,7 @@ app.use(pacienteRoutes);
 //ruta cita agg solicitud api
 const citaRoutes = require('./routers/citaRoutes');
 app.use('/', citaRoutes);
+//ruta dashboard llenar
 
 app.listen(3000, () => {
   console.log('Servidor escuchando en http://localhost:3000');

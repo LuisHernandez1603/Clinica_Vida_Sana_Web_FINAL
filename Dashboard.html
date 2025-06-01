@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Clínica Vida Sana</title>
+  <link rel="stylesheet" href="Dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="dashboard__content">
+
+      <header class="dashboard__header">
+        <h1 class="dashboard__titulo">Clínica Vida Sana - Panel Administrativo</h1>
+        <input type="text" class="dashboard__search" placeholder="Buscar...">
+      </header>
+
+      <!-- KPIs -->
+      <section class="dashboard__kpis">
+        <div class="kpi-card">
+          <h3 class="kpi-card__titulo">Pacientes Registrados</h3>
+          <p class="kpi-card__valor" id="kpi-pacientes">70</p>
+        </div>
+        <div class="kpi-card">
+          <h3 class="kpi-card__titulo">Citas Agendadas</h3>
+          <p class="kpi-card__valor" id="kpi-citas">52</p>
+        </div>
+      </section>
+
+      <!-- Gráficos -->
+      <section class="dashboard__graficos">
+        <div class="grafico-card">
+          <h3 class="grafico-card__titulo">Citas por Mes</h3>
+          <canvas id="barChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Tabla de citas mensuales -->
+      <section class="dashboard__card citas-mensuales">
+        <h3 class="citas-mensuales__titulo">Citas Mensuales</h3>
+        <div class="citas-mensuales__tabla-container">
+          <table class="citas-mensuales__tabla" id="tabla-citas-mensuales">
+            <thead class="citas-mensuales__thead">
+              <tr class="citas-mensuales__fila">
+                <th class="citas-mensuales__columna">Mes</th>
+                <th class="citas-mensuales__columna">Total de Citas</th>
+              </tr>
+            </thead>
+            <tbody class="citas-mensuales__tbody">
+              <!-- Se llenará dinámicamente con JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="Dashboard.js"></script>
+</body>
+</html>

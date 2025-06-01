@@ -1,0 +1,145 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* Contenedor general del dashboard */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.dashboard__content {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Header */
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard__titulo {
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+.dashboard__search {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+}
+
+/* KPIs */
+.dashboard__kpis {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.kpi-card {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.kpi-card__titulo {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.kpi-card__valor {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007BFF;
+}
+
+/* Gráficos */
+.dashboard__graficos {
+  margin-bottom: 30px;
+}
+
+.grafico-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grafico-card__titulo {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #007BFF;
+}
+
+/* Citas Mensuales (Tabla) */
+.dashboard__card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.citas-mensuales__titulo {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.citas-mensuales__tabla-container {
+  overflow-x: auto;
+}
+
+.citas-mensuales__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.citas-mensuales__columna,
+.citas-mensuales__fila td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.citas-mensuales__thead {
+  background-color: #007BFF;
+  color: white;
+}
+
+.citas-mensuales__tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .dashboard__kpis {
+    flex-direction: column;
+  }
+
+  .dashboard__header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dashboard__search {
+    width: 100%;
+  }
+}
