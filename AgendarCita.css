@@ -1,0 +1,103 @@
+/* Paleta y estilos base */
+body {
+  background-color: #F2F2F2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #025E73;
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+   background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Centramos más arriba para mostrar mejor las caras */
+  background-position: center top;
+
+  background-attachment: fixed;
+}
+
+.agendar-cita {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f5f9ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.agendar-cita__titulo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #003366;
+}
+
+.agendar-cita__mensaje {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.agendar-cita__icono {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.agendar-cita__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.agendar-cita__grupo {
+  margin-bottom: 1rem;
+}
+
+.agendar-cita__label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #003366;
+  font-weight: 600;
+}
+
+.agendar-cita__input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.agendar-cita__input:focus {
+  border-color: #00509e;
+  outline: none;
+  box-shadow: 0 0 5px #00509e;
+}
+
+.agendar-cita__boton {
+  padding: 0.6rem;
+  background-color: #00509e;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.agendar-cita__boton:hover {
+  background-color: #003366;
+}
+
+/* Animación para mensajes */
+@keyframes fadeInOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
