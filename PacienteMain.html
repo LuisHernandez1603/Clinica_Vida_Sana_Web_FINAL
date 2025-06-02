@@ -1,67 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <!-- Charset UTF-8 para que acepte caracteres especiales en español -->
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Esto hace que la página sea responsiva, se adapta a móviles y tablets -->
+  
   <title>Clínica Vida Sana - Gestión de Citas</title>
-  <link rel="stylesheet" href="StylesMenu.css">
+  <!-- Título que aparece en la pestaña del navegador -->
+  
+  <link rel="stylesheet" href="StylesMenu.css" />
+  <!-- Se enlaza el archivo CSS que contiene todos los estilos personalizados -->
 </head>
+
 <body>
 
-  <!-- Navbar -->
+  <!-- Barra de navegación principal -->
   <nav class="navbar">
     <div class="navbar__container">
+      <!-- Contenedor para agrupar el contenido de la navbar y aplicar estilos flexbox -->
+      
       <a class="navbar__brand" href="index.html">Clínica Vida Sana</a>
+      <!-- Enlace que funciona como el logo o marca, lleva a la página principal -->
+      
       <span class="navbar__usuario">Bienvenido, <strong>Paciente</strong></span>
+      <!-- Texto que muestra el usuario activo, en este caso 'Paciente' -->
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Sección principal de bienvenida (Hero) -->
   <header class="hero">
     <div class="hero__contenido">
+      <!-- Contenedor para el contenido del hero, centrado y con padding -->
+      
       <h1 class="hero__titulo">Bienvenido a Clínica Vida Sana</h1>
+      <!-- Título principal grande y destacado para dar la bienvenida -->
+      
       <p class="hero__subtitulo">Gestiona tu salud de manera fácil y rápida</p>
+      <!-- Subtítulo que explica el propósito o beneficio de la página -->
+      
       <h2 class="hero__accion">Selecciona tu acción</h2>
+      <!-- Texto que indica al usuario qué hacer a continuación -->
     </div>
   </header>
 
-  <!-- Menú de acciones -->
+  <!-- Sección de menú con las opciones disponibles -->
   <section class="menu">
     <div class="menu__contenedor">
+      <!-- Contenedor tipo grid para organizar las tarjetas de forma responsiva -->
 
+      <!-- Tarjeta 1: Ver mis citas -->
       <a href="vercita.html" class="menu__card">
-        <img src="https://cdn-icons-png.flaticon.com/512/9411/9411437.png" class="menu__imagen" alt="Ver mis citas">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9411/9411437.png"
+          class="menu__imagen"
+          alt="Ver mis citas"
+        />
+        <!-- Imagen representativa de la acción, con texto alternativo para accesibilidad -->
+        
         <h3 class="menu__titulo">Ver mis citas</h3>
+        <!-- Título corto que describe la acción -->
+        
         <p class="menu__descripcion">Consulta tus citas médicas agendadas.</p>
+        <!-- Breve descripción para aclarar la función -->
       </a>
 
+      <!-- Tarjeta 2: Agendar cita -->
       <a href="agendarCita.html" class="menu__card">
-        <img src="https://static.vecteezy.com/system/resources/previews/002/566/016/non_2x/medical-appointment-icon-vector.jpg" class="menu__imagen" alt="Agendar cita">
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/002/566/016/non_2x/medical-appointment-icon-vector.jpg"
+          class="menu__imagen"
+          alt="Agendar cita"
+        />
         <h3 class="menu__titulo">Agendar cita</h3>
         <p class="menu__descripcion">Solicita una nueva cita médica.</p>
       </a>
 
+      <!-- Tarjeta 3: Mi perfil -->
       <a href="perfilusuario.html" class="menu__card">
-        <img src="https://img.freepik.com/vector-premium/icono-membresia-plateado-icono-perfil-avatar-defecto-icono-miembros-imagen-usuario-redes-sociales-ilustracion-vectorial_561158-4195.jpg?semt=ais_hybrid&w=740" class="menu__imagen" alt="Mi perfil">
+        <img
+          src="https://img.freepik.com/vector-premium/icono-membresia-plateado-icono-perfil-avatar-defecto-icono-miembros-imagen-usuario-redes-sociales-ilustracion-vectorial_561158-4195.jpg?semt=ais_hybrid&w=740"
+          class="menu__imagen"
+          alt="Mi perfil"
+        />
         <h3 class="menu__titulo">Mi perfil</h3>
         <p class="menu__descripcion">Gestiona tus datos personales.</p>
       </a>
 
+      <!-- Tarjeta 4: Ver Doctor -->
       <a href="VerDoctor.html" class="menu__card">
-        <img src="https://cdn-icons-png.flaticon.com/512/921/921059.png" class="menu__imagen" alt="Ver Doctor">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/921/921059.png"
+          class="menu__imagen"
+          alt="Ver Doctor"
+        />
         <h3 class="menu__titulo">Ver Doctor</h3>
         <p class="menu__descripcion">Mirar tu doctor con citas.</p>
       </a>
 
+      <!-- Tarjeta 5: Cerrar sesión -->
       <a href="logout.html" class="menu__card">
-        <img src="https://cdn-icons-png.flaticon.com/512/891/891374.png" class="menu__imagen" alt="Cerrar sesión">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/891/891374.png"
+          class="menu__imagen"
+          alt="Cerrar sesión"/>
+
         <h3 class="menu__titulo">Cerrar sesión</h3>
         <p class="menu__descripcion">Salir de tu cuenta.</p>
       </a>
-
     </div>
   </section>
 
+  <!-- Sección para scripts JS si los tenés -->
   <script src="script.js"></script>
+
 </body>
 </html>
