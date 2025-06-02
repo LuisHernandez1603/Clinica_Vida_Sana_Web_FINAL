@@ -1,0 +1,169 @@
+/* =========================
+   ESTILOS GENERALES DEL BODY
+   ========================= */
+body {
+  background-color: #F2F2F2; /* Fondo claro que combina con el azul del sitio */
+  font-family: Arial, sans-serif; /* Fuente limpia y legible */
+  margin: 0;
+  padding: 0;
+  color: #025E73; /* Azul suave para los textos */
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg'); /* Imagen de fondo profesional */
+  background-repeat: no-repeat; /* No se repite */
+  background-size: cover; /* Se expande para cubrir toda la pantalla */
+  background-position: center top; /* Se centra desde arriba */
+  background-attachment: fixed; /* El fondo no se mueve al hacer scroll */
+}
+
+/* =========================
+   NAVBAR (BARRA DE NAVEGACIÓN SUPERIOR)
+   ========================= */
+.navbar {
+  background-color: rgba(4, 57, 89, 0.9); /* Azul oscuro con transparencia para dejar ver un poco el fondo */
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para elevar visualmente la navbar */
+  color: white;
+}
+
+.navbar__container {
+  display: flex; /* Flexbox para alinear los elementos en fila */
+  justify-content: space-between; /* Marca a la izquierda, usuario a la derecha */
+  align-items: center;
+  max-width: 1200px; /* Limita el ancho para que no se estire demasiado en pantallas grandes */
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+.navbar__brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none; /* Elimina el subrayado */
+  color: white;
+}
+
+.navbar__usuario {
+  font-size: 1rem;
+}
+
+/* =========================
+   SECCIÓN HERO (BIENVENIDA)
+   ========================= */
+.hero {
+  text-align: center;
+  padding: 60px 20px 30px;
+  background-color: rgba(255, 255, 255, 0.75); /* Fondo blanco translúcido sobre la imagen */
+}
+
+.hero__titulo {
+  font-size: 2.5rem;
+  color: #043959; /* Azul principal del sistema */
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero__subtitulo {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #025E73;
+}
+
+.hero__accion {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #025E73;
+}
+
+/* =========================
+   MENÚ DE ACCIONES (TARJETAS)
+   ========================= */
+.menu {
+  padding: 2rem 1rem 4rem; /* Espaciado general */
+}
+
+.menu__contenedor {
+  display: grid; /* Diseño en cuadrícula */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Se adapta según el ancho de la pantalla */
+  gap: 2rem; /* Espacio entre las tarjetas */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Estilo de cada tarjeta */
+.menu__card {
+  background-color: #ffffffd0; /* Fondo blanco con un toque translúcido */
+  border-radius: 12px; /* Bordes redondeados suaves */
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  color: #025E73;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación al pasar el mouse */
+}
+
+/* Efecto al pasar el cursor */
+.menu__card:hover {
+  transform: translateY(-5px); /* Se levanta un poquito */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Imagen dentro de cada tarjeta */
+.menu__imagen {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 50%; /* Círculo */
+  border: 2px solid #025E73; /* Borde azul */
+  background-color: white;
+}
+
+/* Título de la tarjeta */
+.menu__titulo {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #043959;
+  font-weight: bold;
+}
+
+/* Descripción corta debajo del título */
+.menu__descripcion {
+  font-size: 0.95rem;
+  color: #025E73;
+}
+
+/* =========================
+   RESPONSIVE PARA MÓVILES
+   ========================= */
+@media (max-width: 480px) {
+  .hero__titulo {
+    font-size: 1.8rem;
+  }
+
+  .hero__accion {
+    font-size: 1.1rem;
+  }
+
+  .menu__card {
+    padding: 15px;
+  }
+
+  .menu__titulo {
+    font-size: 1rem;
+  }
+
+  .menu__descripcion {
+    font-size: 0.85rem;
+  }
+
+  .menu__imagen {
+    width: 60px;
+    height: 60px;
+  }
+
+  .navbar__brand {
+    font-size: 1.3rem;
+  }
+
+  .navbar__usuario {
+    font-size: 0.9rem;
+  }
+}
