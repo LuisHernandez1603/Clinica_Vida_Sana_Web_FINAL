@@ -1,8 +1,7 @@
-// routes/dashboardRoutes.js
 const express = require('express');
 const router = express.Router();
-const { obtenerDatosDashboard } = require('../controllers/dashboardController');
+const { obtenerKPIs } = require('../controllers/dashboardControllers');
 
-router.get('/dashboard-datos', obtenerDatosDashboard);
+router.get('/kpis-llenar', obtenerKPIs);
 
 module.exports = router;

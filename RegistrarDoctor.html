@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrar Doctor - Clínica Vida Sana</title>
+  <link rel="stylesheet" href="RegistrarDoctor.css" />
+</head>
+<body>
+  <main class="registrar-doctor">
+    <h1 class="registrar-doctor__titulo">Registrar Doctor</h1>
+
+    <!-- Mensajes de éxito o error -->
+    <div class="registrar-doctor__mensaje" id="mensaje-exito">
+      Doctor registrado con éxito.
+    </div>
+    <div class="registrar-doctor__mensajeerror" id="mensaje-error">
+      Por favor, completa todos los campos correctamente.
+    </div>
+
+    <form id="form-registrar-doctor" class="registrar-doctor__form" novalidate>
+      <!-- Nombre -->
+      <div class="registrar-doctor__grupo">
+        <label for="nombre" class="registrar-doctor__label">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          class="registrar-doctor__input"
+          placeholder="Ejemplo: Juan"
+          required
+        />
+      </div>
+
+      <!-- Apellidos -->
+      <div class="registrar-doctor__grupo">
+        <label for="apellidos" class="registrar-doctor__label">Apellidos</label>
+        <input
+          type="text"
+          id="apellidos"
+          name="apellidos"
+          class="registrar-doctor__input"
+          placeholder="Ejemplo: Pérez Gómez"
+          required
+        />
+      </div>
+
+      <!-- Teléfono -->
+      <div class="registrar-doctor__grupo">
+        <label for="telefono" class="registrar-doctor__label">Teléfono</label>
+        <input
+          type="tel"
+          id="telefono"
+          name="telefono"
+          class="registrar-doctor__input"
+          placeholder="Ejemplo: 5555-5555"
+          pattern="[0-9]{4}-[0-9]{4}"
+          required
+        />
+      </div>
+
+      <!-- Correo electrónico -->
+      <div class="registrar-doctor__grupo">
+        <label for="correo" class="registrar-doctor__label">Correo electrónico</label>
+        <input
+          type="email"
+          id="correo"
+          name="correo"
+          class="registrar-doctor__input"
+          placeholder="ejemplo@correo.com"
+          required
+        />
+      </div>
+
+      <!-- Activo (checkbox) -->
+      <div class="registrar-doctor__grupo registrar-doctor__grupo--checkbox">
+        <input
+          type="checkbox"
+          id="activo"
+          name="activo"
+          class="registrar-doctor__checkbox"
+          checked
+        />
+        <label for="activo" class="registrar-doctor__label registrar-doctor__label--checkbox">
+          Activo
+        </label>
+      </div>
+
+          <div class="registrar-doctor__grupo">
+      <label for="especialidad_id" class="registrar-doctor__label">Especialidad</label>
+      <select id="especialidad_id" name="especialidad_id" class="registrar-doctor__input">
+        <option value="">Cargando especialidades...</option>
+      </select>
+    </div>
+
+      
+     
+
+      <!-- Botón enviar -->
+      <button type="submit" class="registrar-doctor__boton">Registrar Doctor</button>
+    </form>
+  </main>
+
+  <script src="RegistrarDoctor.js"></script>
+</body>
+</html>

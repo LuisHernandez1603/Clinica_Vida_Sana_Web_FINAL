@@ -1,60 +1,95 @@
-function crearFilaCita(mes, total) {
-  const fila = document.createElement('tr');
-  fila.className = 'citas-mensuales__fila';
-
-  const celdaMes = document.createElement('td');
-  celdaMes.textContent = mes;
-
-  const celdaTotal = document.createElement('td');
-  celdaTotal.textContent = total;
-
-  fila.appendChild(celdaMes);
-  fila.appendChild(celdaTotal);
-
-  return fila;
-}
-
-async function cargarCitasMensuales() {
+document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const res = await fetch('http://localhost:3000/citas-mensuales');
+   const res = await fetch('http://localhost:3000/kpis-llenar');
+
     const data = await res.json();
 
-    const labels = data.map(d => d.mes);
-    const valores = data.map(d => d.totalCitas);
+    // Pacientes: Tabla y Gráfico
+    llenarTabla('tabla-pacientes-body', data.pacientes);
+    renderizarGraficoBarras('grafico-pacientes', 'Pacientes', data.pacientes);
 
-    // 🟦 Gráfico de barras
-    const ctx = document.getElementById('barChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
+    // Citas: Tabla y Gráfico
+    llenarTabla('tabla-citas-body', data.citas);
+    renderizarGraficoPastel('grafico-citas', data.citas);
+
+  } catch (err) {
+    console.error('Error al cargar datos del dashboard:', err);
+  }
+});
+
+function llenarTabla(idTabla, datos) {
+  const tbody = document.getElementById(idTabla);
+  tbody.innerHTML = '';
+
+  datos.meses.forEach((mes, i) => {
+    const fila = document.createElement('tr');
+    fila.innerHTML = `
+      <td>${mes}</td>
+      <td>${datos.valores[i]}</td>
+    `;
+    tbody.appendChild(fila);
+  });
+}
+
+function renderizarGraficoBarras(canvasId, label, datos) {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: datos.meses,
+      datasets: [{
+        label: label,
+        data: datos.valores,
+        backgroundColor: '#4caf50'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+function renderizarGraficoPastel(canvasId, datos) {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: datos.meses,
+      datasets: [{
+        data: datos.valores,
+        backgroundColor: generarColores(datos.meses.length)
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+}
+
+function generarColores(cantidad) {
+  const colores = [];
+  for (let i = 0; i < cantidad; i++) {
+    colores.push(`hsl(${i * (360 / cantidad)}, 70%, 60%)`);
+  }
+  return colores;
+}
+
+  // Gráfico de pastel - total general
+    const totalPacientes = pacientes.valores.reduce((a, b) => a + b, 0);
+    const totalCitas = citas.valores.reduce((a, b) => a + b, 0);
+ new Chart(document.getElementById('grafico-pastel'), {
+      type: 'pie',
       data: {
-        labels,
+        labels: ['Pacientes Registrados', 'Citas Atendidas'],
         datasets: [{
-          label: 'Citas por mes',
-          data: valores,
-          backgroundColor: 'rgba(54, 162, 235, 0.6)',
-          borderRadius: 5
+          data: [totalPacientes, totalCitas],
+          backgroundColor: ['#f39c12', '#9b59b6']
         }]
       },
       options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true }
-        }
+        responsive: true
       }
     });
-
-    // 📋 Tabla
-    const tbody = document.querySelector('.citas-mensuales__tbody');
-    tbody.innerHTML = ''; // Limpiar contenido anterior
-
-    data.forEach(({ mes, totalCitas }) => {
-      const fila = crearFilaCita(mes, totalCitas);
-      tbody.appendChild(fila);
-    });
-
-  } catch (err) {
-    console.error('Error cargando datos de citas mensuales:', err);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', cargarCitasMensuales);

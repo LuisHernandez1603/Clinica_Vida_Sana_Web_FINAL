@@ -89,6 +89,22 @@ body {
   z-index: 10;
 }
 
+
+.agendar-cita__boton-buscar{
+
+background-color: #043959;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
 /* Animación fadeInOut */
 @keyframes fadeInOut {
   0% {

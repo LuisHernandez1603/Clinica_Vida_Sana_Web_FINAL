@@ -1,76 +1,99 @@
-// Seleccionamos el formulario y los elementos para mostrar mensajes
-const formAgendar = document.getElementById('form-agendar-cita');
-const mensaje = document.getElementById('mensaje-agendar');
-const mensajeTexto = document.getElementById('mensaje-texto-agendar');
+document.addEventListener('DOMContentLoaded', () => {
+  const formulario = document.getElementById('form-agendar-cita');
 
-// Al cargar la página, ponemos la fecha mínima hoy para el input fecha
-window.addEventListener('DOMContentLoaded', () => {
-  const inputFecha = document.getElementById('fecha');
-  const hoy = new Date().toISOString().split('T')[0];
-  inputFecha.min = hoy;
-});
+  // Inputs y elementos importantes
+  const inputCorreo = document.getElementById('correo');
+  const btnBuscarPaciente = document.getElementById('btn-buscar-paciente');
+  const infoPaciente = document.getElementById('info-paciente');
+  const pacienteIdInput = document.getElementById('paciente_id'); // input hidden
+  
+  // Cargar doctores en el select
+  fetch('http://localhost:3000/citas/doctores')
+    .then(res => res.json())
+    .then(doctores => {
+      const select = document.getElementById('doctor');
+      doctores.forEach(doc => {
+        const option = document.createElement('option');
+        option.value = doc.idDoctor; // ajusta según tu BD
+        option.textContent = `${doc.nombre}  (${doc.especialidad})`;
+        select.appendChild(option);
+      });
+    });
 
-// Evento submit para el formulario de agendar cita
-formAgendar.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  // Botón buscar paciente por correo
+  btnBuscarPaciente.addEventListener('click', async () => {
+    const correo = inputCorreo.value.trim();
+    if (!correo) {
+      infoPaciente.textContent = 'Ingrese un correo válido.';
+      pacienteIdInput.value = '';
+      return;
+    }
+    infoPaciente.textContent = 'Buscando paciente...';
+    pacienteIdInput.value = '';
 
-  // Recogemos valores del formulario
-  const correo = document.getElementById('correo').value.trim();
-  const fecha = document.getElementById('fecha').value;
-  let hora = document.getElementById('hora').value;
-  const motivo = document.getElementById('motivo').value.trim();
+    
 
-  // Agregar segundos si no los tiene (de HH:mm a HH:mm:ss)
-  if (hora.length === 5) {
-    hora = hora + ':00';
-  }
 
-  // Validación sencilla (aunque required ya lo hace)
-  if (!correo || !fecha || !hora || !motivo) {
-    mostrarMensaje('Por favor, completa todos los campos.', true);
-    return;
-  }
+    try {
+     const res = await fetch(`http://localhost:3000/citas/pacientes?correo=${encodeURIComponent(correo)}`);
+      if (!res.ok) throw new Error('Paciente no encontrado');
+      const paciente = await res.json();
 
-  // Crear objeto con los datos a enviar
-  const datosCita = { correo, fecha, hora, motivo };
-
-  try {
-  // Petición POST para enviar la cita al backend
-  const response = await fetch('http://localhost:3000/agendar-cita', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(datosCita)
+      if (paciente && paciente.idPaciente) {
+        infoPaciente.textContent = `Paciente: ${paciente.nombreCompleto}`;
+        pacienteIdInput.value = paciente.idPaciente;
+      } else {
+        infoPaciente.textContent = 'Paciente no encontrado.';
+        pacienteIdInput.value = '';
+      }
+    } catch {
+      infoPaciente.textContent = 'Error al buscar paciente.';
+      pacienteIdInput.value = '';
+    }
   });
 
-  let data;
-  try {
-    data = await response.json();
-  } catch {
-    data = { mensaje: await response.text() };
-  }
+  formulario.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (response.ok) {
-    mostrarMensaje(data.mensaje || '¡Cita agendada con éxito!');
-    formAgendar.reset();
-  } else {
-    mostrarMensaje(data.error || 'Error al agendar la cita.', true);
-  }
-} catch (error) {
-  mostrarMensaje('Error al conectar con el servidor.', true);
-  console.error('Error:', error);
-}
+    const doctor_id = document.getElementById('doctor').value;
+    const paciente_id = pacienteIdInput.value;
+    const fecha = document.getElementById('fecha').value; // nuevo campo fecha
+    const hora = document.getElementById('hora').value;
+
+    if (!paciente_id) {
+      alert('Debe buscar y seleccionar un paciente válido antes de agendar.');
+      return;
+    }
+    if (!doctor_id || !fecha || !hora) {
+      alert('Debe completar todos los campos obligatorios.');
+      return;
+    }
+
+    // Combinar fecha y hora en formato ISO 8601 para enviar
+    // ej: '2025-06-08' + 'T' + '14:30' = '2025-06-08T14:30:00'
+    const fechaHora = `${fecha}T${hora}:00`; // formato "2025-06-08T14:30:00"
+
+
+    try {
+      const response = await fetch('http://localhost:3000/citas/agendar-cita', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ doctor_id, paciente_id, fechaHora })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(`✅ Cita agendada correctamente.\nCódigo: ${data.codigoCita}`);
+        formulario.reset();
+        infoPaciente.textContent = '';
+        pacienteIdInput.value = '';
+      } else {
+        alert(`❌ Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+      alert('Error de conexión con el servidor.');
+    }
+  });
 });
-
-// Función para mostrar mensaje bonito, true si es error
-function mostrarMensaje(texto, esError = false) {
-  mensajeTexto.textContent = texto;
-  mensaje.style.backgroundColor = esError ? '#bc0000' : '#28a745';
-  mensaje.style.display = 'block';
-
-  // Animar y ocultar después de 4 segundos
-  mensaje.style.animation = 'fadeInOut 4s ease-in-out forwards';
-
-  setTimeout(() => {
-    mensaje.style.display = 'none';
-  }, 4000);
-}

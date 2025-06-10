@@ -8,19 +8,16 @@
 </head>
 <body>
   <section class="agendar-cita">
-    <!-- Título del formulario -->
     <h2 class="agendar-cita__titulo">Agendar Cita</h2>
 
-    <!-- Mensaje de éxito o error -->
-    <div class="agendar-cita__mensaje" id="mensaje-agendar">
+    <div class="agendar-cita__mensaje" id="mensaje-agendar" style="display:none;">
       <span id="mensaje-texto-agendar"></span>
     </div>
 
-    <!-- Formulario para agendar cita -->
     <form class="agendar-cita__form" id="form-agendar-cita" action="#" method="POST">
-      <!-- Correo electrónico -->
+      
       <div class="agendar-cita__grupo">
-        <label class="agendar-cita__label" for="correo">Correo Electrónico</label>
+        <label class="agendar-cita__label" for="correo">Correo Electrónico del Paciente</label>
         <input
           class="agendar-cita__input"
           type="email"
@@ -30,9 +27,12 @@
           required
           placeholder="correo@ejemplo.com"
         />
+        <button type="button" id="btn-buscar-paciente" class="agendar-cita__boton-buscar">Buscar Paciente</button>
+        <p class="agendar-cita__info" id="info-paciente"></p>
+        <input type="hidden" id="paciente_id" name="paciente_id" />
       </div>
 
-      <!-- Fecha de la cita -->
+      <!-- Agrego solo este bloque para fecha -->
       <div class="agendar-cita__grupo">
         <label class="agendar-cita__label" for="fecha">Fecha</label>
         <input
@@ -41,11 +41,10 @@
           id="fecha"
           name="fecha"
           required
-          min=""
+          min="<?php echo date('Y-m-d'); ?>"
         />
       </div>
 
-      <!-- Hora de la cita -->
       <div class="agendar-cita__grupo">
         <label class="agendar-cita__label" for="hora">Hora</label>
         <input
@@ -59,7 +58,19 @@
         />
       </div>
 
-      <!-- Motivo de la cita -->
+      <div class="agendar-cita__grupo">
+        <label class="agendar-cita__label" for="doctor">Doctor</label>
+        <select
+          class="agendar-cita__input"
+          id="doctor"
+          name="doctor"
+          required
+        >
+          <option value="">Seleccione un doctor</option>
+          <!-- Opciones se llenan dinámicamente -->
+        </select>
+      </div>
+
       <div class="agendar-cita__grupo">
         <label class="agendar-cita__label" for="motivo">Motivo</label>
         <textarea
@@ -73,7 +84,6 @@
         ></textarea>
       </div>
 
-      <!-- Botón para enviar el formulario -->
       <button class="agendar-cita__boton" type="submit">Agendar</button>
     </form>
   </section>

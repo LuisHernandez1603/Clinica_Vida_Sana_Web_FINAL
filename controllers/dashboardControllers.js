@@ -1,39 +1,46 @@
-// controllers/dashboardController.js
-const sql = require('mssql');
+const { sql, poolPromise } = require('../config/db');
 
-async function obtenerDatosDashboard(req, res) {
+async function obtenerKPIs(req, res) {
   try {
-    // Consulta total pacientes
-    const pacientesResult = await sql.query`SELECT COUNT(*) AS totalPacientes FROM Pacientes`;
-    const totalPacientes = pacientesResult.recordset[0].totalPacientes;
+    const pool = await poolPromise;
 
-    // Consulta total citas
-    const citasResult = await sql.query`SELECT COUNT(*) AS totalCitas FROM DimCitas`;
-    const totalCitas = citasResult.recordset[0].totalCitas;
-
-    // Consulta citas por mes (ejemplo simple)
-    const DimCitas = await sql.query`
+    // Pacientes registrados por mes
+    const pacientesQuery = await pool.request().query(`
       SELECT 
-        FORMAT(fecha, 'MMMM') AS mes, 
-        COUNT(*) AS totalCitas 
-      FROM Citas 
-      GROUP BY FORMAT(fecha, 'MMMM'), DATEPART(month, fecha)
-      ORDER BY DATEPART(month, fecha)
-    `;
-    const citasMensuales = citasMensualesResult.recordset;
+        FORMAT(fecha_registro, 'yyyy-MM') AS mes, 
+        COUNT(*) AS total 
+      FROM Paciente
+      GROUP BY FORMAT(fecha_registro, 'yyyy-MM') 
+      ORDER BY mes
+    `);
+
+    // Citas registradas por mes (sin filtrar por estado porque no existe esa columna)
+    const citasQuery = await pool.request().query(`
+      SELECT 
+        FORMAT(fecha_cita, 'yyyy-MM') AS mes, 
+        COUNT(*) AS total 
+      FROM Citas
+      GROUP BY FORMAT(fecha_cita, 'yyyy-MM') 
+      ORDER BY mes
+    `);
 
     res.json({
-      totalPacientes,
-      totalCitas,
-      citasMensuales
+      pacientes: {
+        meses: pacientesQuery.recordset.map(row => row.mes),
+        valores: pacientesQuery.recordset.map(row => row.total),
+      },
+      citas: {
+        meses: citasQuery.recordset.map(row => row.mes),
+        valores: citasQuery.recordset.map(row => row.total),
+      },
     });
 
   } catch (error) {
-    console.error('Error obteniendo datos dashboard:', error);
-    res.status(500).json({ mensaje: 'Error al obtener datos del dashboard' });
+    console.error('Error al obtener KPIs:', error);
+    res.status(500).json({ error: 'Error al obtener KPIs desde la base de datos' });
   }
 }
 
 module.exports = {
-  obtenerDatosDashboard
+  obtenerKPIs
 };

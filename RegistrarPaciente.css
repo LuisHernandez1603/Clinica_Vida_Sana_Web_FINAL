@@ -6,7 +6,7 @@ body {
   padding: 20px;
   color: #025E73;
   background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
-   background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
 
   /* Centramos más arriba para mostrar mejor las caras */
@@ -47,7 +47,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* Inputs y textarea */
+/* Inputs */
 .registro-paciente__input {
   padding: 10px 12px;
   border: 1.8px solid #025E73;
@@ -82,14 +82,14 @@ body {
 
 /* Estilo para el mensaje de éxito */
 .registro-paciente__mensaje {
-  display: none;           /* Oculto por defecto */
+  display: none; /* Oculto por defecto */
   text-align: center;
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 12px;
   background-color: #28a745; /* Verde éxito */
   color: white;
-  font-size: 1.5rem;       /* Más grande */
+  font-size: 1.5rem; /* Más grande */
   font-weight: 700;
   box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
   animation: fadeInOut 4s ease-in-out forwards;
@@ -97,19 +97,17 @@ body {
   z-index: 10;
 }
 
-
-/* Estilo para el mensaje de éxito */
+/* Estilo para el mensaje de error */
 .registro-paciente__mensajeerror {
-  display: none;           /* Oculto por defecto */
+  display: none; /* Oculto por defecto */
   text-align: center;
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 12px;
-  background-color: #bc0000; /* Verde éxito */
+  background-color: #bc0000; /* Rojo error */
   color: white;
-  font-size: 1.5rem;       /* Más grande */
+  font-size: 1.5rem; /* Más grande */
   font-weight: 700;
-
   animation: fadeInOut 4s ease-in-out forwards;
   position: relative;
   z-index: 10;
@@ -134,6 +132,7 @@ body {
     transform: scale(0.8);
   }
 }
+
 /* Estilos responsive para pantallas pequeñas (teléfonos) */
 @media (max-width: 480px) {
   .registro-paciente {
@@ -150,12 +149,10 @@ body {
     font-size: 0.95rem;
   }
 
-  .registro-paciente__mensaje {
+  .registro-paciente__mensaje,
+  .registro-paciente__mensajeerror {
     font-size: 0.9rem;
     padding: 0.5rem;
     text-align: center;
   }
 }
-
-
-

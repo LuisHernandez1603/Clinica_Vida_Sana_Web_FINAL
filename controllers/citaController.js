@@ -1,87 +1,110 @@
 const sql = require('mssql');
-const config = require('../config/db');
 
-function formatHora(hora) {
-  if (/^\d{2}:\d{2}:\d{2}$/.test(hora)) return hora;
-  if (/^\d{2}:\d{2}$/.test(hora)) return hora + ':00';
-  return null;
+function generarCodigoCita() {
+  return Math.floor(100000 + Math.random() * 900000);
 }
 
-function stringAHora(horaStr) {
-  const [hh, mm, ss] = horaStr.split(':').map(Number);
-  const date = new Date();
-  date.setHours(hh, mm, ss || 0, 0);
-  return date;
-}
-
-async function agendarCita(req, res) {
+// Agendar cita sin enviar fecha_cita (se genera en SQL Server)
+const agendarCita = async (req, res) => {
   try {
-    const { correo, fecha, hora, motivo } = req.body;
-    const horaConSegundos = formatHora(hora);
+    const { doctor_id, paciente_id, fechaHora } = req.body;
 
-    if (!horaConSegundos) {
-      return res.status(400).json({ error: 'Formato de hora inválido' });
+    if (!doctor_id || !paciente_id || !fechaHora) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios' });
     }
 
-    const pool = await sql.connect(config);
-    const transaction = new sql.Transaction(pool);
+    // Convierte string ISO a objeto Date
+    const fechaHoraDate = new Date(fechaHora);
 
-    await transaction.begin();
-
-    try {
-      // Insertar en DimCitas
-      const result = await transaction.request()
-        .input('correo', sql.VarChar(255), correo)
-        .input('fecha', sql.Date, fecha)
-        .input('hora', sql.Time, stringAHora(horaConSegundos))
-        .input('motivo', sql.VarChar(500), motivo)
-        .input('estado', sql.VarChar(50), 'pendiente')
-        .query(`
-          INSERT INTO dbo.DimCitas (correo, fecha, hora, motivo, estado)
-          VALUES (@correo, @fecha, @hora, @motivo, @estado);
-          SELECT SCOPE_IDENTITY() AS idDimCita;
-        `);
-
-      const idDimCita = result.recordset[0].idDimCita;
-
-      // Obtener idTiempo desde DimTiempo comparando solo año y mes
-      const tiempoResult = await transaction.request()
-        .input('fecha', sql.Date, fecha)
-        .query(`
-          SELECT TOP 1 idTiempo
-          FROM dbo.DimTiempo
-          WHERE YEAR(fecha) = YEAR(@fecha) AND MONTH(fecha) = MONTH(@fecha)
-        `);
-
-      const idTiempo = tiempoResult.recordset[0]?.idTiempo;
-
-      if (!idTiempo) {
-        await transaction.rollback();
-        return res.status(400).json({ error: 'No se encontró idTiempo para el mes y año proporcionados' });
-      }
-
-      // Insertar en HechosCitas
-      await transaction.request()
-        .input('idDimCita', sql.Int, idDimCita)
-        .input('idTiempo', sql.Int, idTiempo)
-        .query(`
-          INSERT INTO dbo.HechosCitas (idDimCita, idTiempo)
-          VALUES (@idDimCita, @idTiempo);
-        `);
-
-      await transaction.commit();
-
-      res.status(201).json({ message: 'Cita agendada con éxito', idDimCita });
-
-    } catch (error) {
-      await transaction.rollback();
-      throw error;
+    if (isNaN(fechaHoraDate.getTime())) { // Verifica si es fecha válida
+      return res.status(400).json({ error: 'Fecha y hora inválida' });
     }
 
+    const codigoCita = generarCodigoCita();
+
+    const pool = await sql.connect();
+
+    const result = await pool.request()
+      .input('codigoCita', sql.Int, codigoCita)
+      .input('doctor_id', sql.Int, doctor_id)
+      .input('paciente_id', sql.Int, paciente_id)
+      .input('fechaHora', sql.DateTime, fechaHoraDate)  // PASAMOS un Date, no un string
+      .input('activo', sql.Bit, 1)
+      .query(`
+        INSERT INTO Citas (codigoCita, doctor_id, paciente_id, fechaHora, activo)
+        OUTPUT inserted.idCita, inserted.fecha_cita
+        VALUES (@codigoCita, @doctor_id, @paciente_id, @fechaHora, @activo);
+      `);
+
+    const cita = result.recordset[0];
+
+    res.status(201).json({
+      mensaje: 'Cita agendada correctamente',
+      idCita: cita.idCita,
+      codigoCita,
+      fecha_cita: cita.fecha_cita
+    });
   } catch (error) {
     console.error('Error al agendar cita:', error);
-    res.status(500).json({ error: 'Error al agendar cita' });
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
-}
+};
 
-module.exports = { agendarCita };
+
+// Obtener doctores con nombre completo y especialidad (uniendo tablas Doctor y Especialidad)
+const obtenerDoctores = async (req, res) => {
+  try {
+    const pool = await sql.connect();
+
+    const result = await pool.request()
+      .query(`
+            SELECT 
+        d.idDoctor,
+        d.nombre,
+        e.nombre AS especialidad
+      FROM Doctor d
+      INNER JOIN Especialidad e ON d.especialidad_id = e.idEspecialidad
+      WHERE d.activo = 1;
+
+      `);
+
+    res.json(result.recordset);
+  } catch (error) {
+    console.error('Error al obtener doctores:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+// Obtener pacientes con nombre completo y fecha de nacimiento
+const obtenerPacientes = async (req, res) => {
+  const correo = req.query.correo;
+  if (!correo) return res.status(400).json({ error: 'Falta el parámetro correo' });
+
+  try {
+    const pool = await sql.connect();
+
+    const result = await pool.request()
+      .input('correo', sql.VarChar(50), correo)
+      .query(`
+        SELECT idPaciente, (nombre + ' ' + apellidos) AS nombreCompleto
+        FROM Paciente
+        WHERE correo_electronico = @correo
+      `);
+
+    if (result.recordset.length === 0) {
+      return res.status(404).json({ error: 'Paciente no encontrado' });
+    }
+
+    res.json(result.recordset[0]);
+  } catch (error) {
+    console.error('Error al buscar paciente por correo:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+
+module.exports = {
+  agendarCita,
+  obtenerDoctores,
+  obtenerPacientes
+};

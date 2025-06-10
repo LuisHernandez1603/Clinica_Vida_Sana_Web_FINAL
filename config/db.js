@@ -4,7 +4,7 @@ const config = {
   user: 'clinica_user',
   password: 'ClinicaNueva123$',
   server: 'LUIS_HERNANDEZ',
-  database: 'multisimencional',
+  database: 'Clinica_Vida_Sana_OLTP',
   options: {
     encrypt: false,
     trustServerCertificate: true,
