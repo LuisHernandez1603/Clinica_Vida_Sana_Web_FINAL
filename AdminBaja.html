@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CRUD Admin - Usuarios</title>
+  <!-- Enlaza el CSS para estilos del CRUD -->
+  <link rel="stylesheet" href="AdminBaja.css" />
+</head>
+<body>
+
+  <!-- Sección principal del CRUD para administrar usuarios -->
+  <section class="crud-admin">
+    <!-- Título principal -->
+    <h2 class="crud-admin__titulo">Administrar Usuarios</h2>
+
+    <!-- Grupo: Selección tipo de usuario -->
+    <div class="crud-admin__grupo">
+      <label class="crud-admin__label" for="tipo">Tipo de usuario</label>
+      <select id="tipo" class="crud-admin__input">
+        <option value="doctor">Doctor</option>
+        <option value="paciente">Paciente</option>
+        <option value="recepcionista">Recepcionista</option>
+      </select>
+    </div>
+
+    <!-- Grupo: ID del usuario -->
+    <div class="crud-admin__grupo">
+      <label class="crud-admin__label" for="id">ID del usuario</label>
+      <input id="id" type="number" class="crud-admin__input" placeholder="Ingrese ID" />
+    </div>
+
+    <!-- Grupo: Nombre nuevo -->
+    <div class="crud-admin__grupo">
+      <label class="crud-admin__label" for="nombre">Nombre</label>
+      <input id="nombre" type="text" class="crud-admin__input" placeholder="Nuevo nombre" />
+    </div>
+
+    <!-- Grupo: Correo nuevo -->
+    <div class="crud-admin__grupo">
+      <label class="crud-admin__label" for="correo">Correo</label>
+      <input id="correo" type="email" class="crud-admin__input" placeholder="Nuevo correo" />
+    </div>
+
+    <!-- Botones para acciones: Editar, Activar, Desactivar -->
+    <div class="crud-admin__botones">
+      <button id="btn-editar" class="crud-admin__boton">Editar Usuario</button>
+      <button id="btn-activar" class="crud-admin__boton crud-admin__boton--activar">Activar Usuario</button>
+      <button id="btn-desactivar" class="crud-admin__boton crud-admin__boton--desactivar">Dar de Baja</button>
+    </div>
+
+    <!-- Mensaje de feedback para el usuario -->
+    <div id="mensaje" class="crud-admin__mensaje" style="display:none;"></div>
+  </section>
+
+  <!-- Archivo JS que maneja la lógica del CRUD -->
+  <script src="AdminBaja.js"></script>
+</body>
+</html>
