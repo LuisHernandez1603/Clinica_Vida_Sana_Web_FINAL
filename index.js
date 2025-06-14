@@ -49,6 +49,21 @@ app.use('/', obtenerKPIs);
 const citaRoutes = require('./routers/citaRoutes');  // <-- aquí la corrección
 app.use('/citas', citaRoutes);
 
+
+//CRUD ADMIN
+const adminBajaRoutes = require('./routers/AdminBajaRoutes');
+app.use('/adminbaja', adminBajaRoutes);
+app.use('/api/admin', adminBajaRoutes);
+
+// RegistrarEspecialidad
+
+const especialidadRoutes = require('./routers/especialidadRoutes');
+app.use('/', especialidadRoutes);
+
+
+
+
+
 app.listen(3000, () => {
   console.log('Servidor escuchando en http://localhost:3000');
 });
