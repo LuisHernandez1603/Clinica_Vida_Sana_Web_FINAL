@@ -18,7 +18,7 @@ body.login {
 
 /* Contenedor blanco del formulario */
 .login__container {
-  background-color: #ffffff;
+   background-color: rgba(255, 255, 255, 0.7); /* Blanco con 70% opacidad */
   padding: 40px 30px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra ligera */

@@ -60,7 +60,12 @@ app.use('/api/admin', adminBajaRoutes);
 const especialidadRoutes = require('./routers/especialidadRoutes');
 app.use('/', especialidadRoutes);
 
+// Consultas
 
+const consultaRoutes = require('./routers/consultaRoutes');
+
+// Usar rutas
+app.use('/consultas', consultaRoutes);
 
 
 

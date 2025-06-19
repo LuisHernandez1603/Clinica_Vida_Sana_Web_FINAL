@@ -29,13 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok) {
         // Redirige según el rol devuelto por el backend
-        if (data.rol === 'admin') {
-          window.location.href = '/AdministradorMain.html';  // Cambiá esta ruta si es necesario
-        } else if (data.rol === 'paciente') {
-          window.location.href = '/PacienteMain.html';       // Cambiá esta ruta si es necesario
-        } else {
-          alert('Rol desconocido'); // Si viene un rol inesperado
-        }
+                if (data.rol === 'admin') {
+            window.location.href = '/AdministradorMain.html';
+          } else if (data.rol === 'paciente') {
+            window.location.href = '/PacienteMain.html';
+          } else if (data.rol === 'doctor') {
+            window.location.href = '/DoctorMenu.html';  // La ruta del módulo doctor
+          } else {
+            alert('Rol desconocido');
+          }
+
       } else {
         // Muestra el error del backend o uno genérico
         alert(data.error || 'Usuario o contraseña incorrectos');

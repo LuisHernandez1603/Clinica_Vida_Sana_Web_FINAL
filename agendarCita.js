@@ -52,48 +52,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  formulario.addEventListener('submit', async (e) => {
-    e.preventDefault();
+ formulario.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    const doctor_id = document.getElementById('doctor').value;
-    const paciente_id = pacienteIdInput.value;
-    const fecha = document.getElementById('fecha').value; // nuevo campo fecha
-    const hora = document.getElementById('hora').value;
+  const doctor_id = document.getElementById('doctor').value;
+  const paciente_id = pacienteIdInput.value;
+  const fecha = document.getElementById('fecha').value;
+  const hora = document.getElementById('hora').value;
+  const motivo = document.getElementById('motivo').value.trim();
 
-    if (!paciente_id) {
-      alert('Debe buscar y seleccionar un paciente válido antes de agendar.');
-      return;
+  if (!paciente_id) {
+    alert('Debe buscar y seleccionar un paciente válido antes de agendar.');
+    return;
+  }
+  if (!doctor_id || !fecha || !hora || !motivo) {
+    alert('Debe completar todos los campos obligatorios.');
+    return;
+  }
+
+  const fechaHora = `${fecha}T${hora}:00`;
+
+  try {
+    const response = await fetch('http://localhost:3000/citas/agendar-cita', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ doctor_id, paciente_id, fechaHora, motivo }) // ← MOTIVO agregado
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(`✅ Cita agendada correctamente.\nCódigo: ${data.codigoCita}`);
+      formulario.reset();
+      infoPaciente.textContent = '';
+      pacienteIdInput.value = '';
+    } else {
+      alert(`❌ Error: ${data.error}`);
     }
-    if (!doctor_id || !fecha || !hora) {
-      alert('Debe completar todos los campos obligatorios.');
-      return;
-    }
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+    alert('Error de conexión con el servidor.');
+  }
+});
 
-    // Combinar fecha y hora en formato ISO 8601 para enviar
-    // ej: '2025-06-08' + 'T' + '14:30' = '2025-06-08T14:30:00'
-    const fechaHora = `${fecha}T${hora}:00`; // formato "2025-06-08T14:30:00"
-
-
-    try {
-      const response = await fetch('http://localhost:3000/citas/agendar-cita', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ doctor_id, paciente_id, fechaHora })
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert(`✅ Cita agendada correctamente.\nCódigo: ${data.codigoCita}`);
-        formulario.reset();
-        infoPaciente.textContent = '';
-        pacienteIdInput.value = '';
-      } else {
-        alert(`❌ Error: ${data.error}`);
-      }
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
-      alert('Error de conexión con el servidor.');
-    }
-  });
 });

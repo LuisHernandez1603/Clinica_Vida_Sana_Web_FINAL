@@ -1,0 +1,166 @@
+/* Fondo y estilos base */
+body {
+  background-color: #F2F2F2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #025E73;
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+/* Contenedor principal del formulario */
+.consulta {
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.7); /* Blanco con 70% opacidad */
+  margin: 40px auto;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+.consulta__titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #043959;
+}
+
+/* Grupo de cada campo */
+.consulta__grupo {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label de cada input/textarea */
+.consulta__label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Inputs y textareas */
+.consulta__input {
+  padding: 10px 12px;
+  border: 1.8px solid #025E73;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #025E73;
+  outline: none;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+}
+
+.consulta__input:focus {
+  border-color: #043959;
+}
+
+/* Botón principal para registrar consulta */
+.consulta__boton {
+  background-color: #043959;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.consulta__boton:hover {
+  background-color: #025E73;
+}
+
+/* Botón para verificar código de cita */
+.consulta__boton-buscar {
+  background-color: #043959;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: fit-content; /* Ajusta al tamaño del contenido */
+  align-self: flex-start; /* Lo alinea al inicio en el flex container */
+}
+
+.consulta__boton-buscar:hover {
+  background-color: #025E73;
+}
+
+/* Contenedor donde mostramos info paciente y doctor */
+#info-cita {
+  font-weight: 600;
+  color: #043959;
+  margin-bottom: 20px;
+  min-height: 1.5em; /* Para reservar espacio */
+}
+
+/* Mensaje de éxito o error */
+.consulta__mensaje {
+  display: none; /* Oculto inicialmente */
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background-color: #28a745; /* Verde éxito */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+  animation: fadeInOut 4s ease-in-out forwards;
+  position: relative;
+  z-index: 10;
+}
+
+/* Animación fadeInOut para mensajes */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  .consulta {
+    padding: 1rem;
+  }
+
+  .consulta__titulo {
+    font-size: 1.25rem;
+  }
+
+  .consulta__input,
+  .consulta__boton,
+  .consulta__boton-buscar {
+    font-size: 0.95rem;
+  }
+
+  .consulta__mensaje {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}

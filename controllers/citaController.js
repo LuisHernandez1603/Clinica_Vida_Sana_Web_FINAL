@@ -1,39 +1,36 @@
-const sql = require('mssql');
+const { sql, poolPromise } = require('../config/db');
 
 function generarCodigoCita() {
   return Math.floor(100000 + Math.random() * 900000);
 }
 
-// Agendar cita sin enviar fecha_cita (se genera en SQL Server)
 const agendarCita = async (req, res) => {
   try {
-    const { doctor_id, paciente_id, fechaHora } = req.body;
+    const { doctor_id, paciente_id, fechaHora,motivo } = req.body;
 
-    if (!doctor_id || !paciente_id || !fechaHora) {
+    if (!doctor_id || !paciente_id || !fechaHora||!motivo) {
       return res.status(400).json({ error: 'Faltan datos obligatorios' });
     }
 
-    // Convierte string ISO a objeto Date
     const fechaHoraDate = new Date(fechaHora);
-
-    if (isNaN(fechaHoraDate.getTime())) { // Verifica si es fecha válida
+    if (isNaN(fechaHoraDate.getTime())) {
       return res.status(400).json({ error: 'Fecha y hora inválida' });
     }
 
     const codigoCita = generarCodigoCita();
-
-    const pool = await sql.connect();
+    const pool = await poolPromise;
 
     const result = await pool.request()
       .input('codigoCita', sql.Int, codigoCita)
       .input('doctor_id', sql.Int, doctor_id)
       .input('paciente_id', sql.Int, paciente_id)
-      .input('fechaHora', sql.DateTime, fechaHoraDate)  // PASAMOS un Date, no un string
+      .input('fechaHora', sql.DateTime, fechaHoraDate)
+      .input('motivo',sql.VarChar,motivo)
       .input('activo', sql.Bit, 1)
       .query(`
-        INSERT INTO Citas (codigoCita, doctor_id, paciente_id, fechaHora, activo)
+        INSERT INTO Citas (codigoCita, doctor_id, paciente_id, fechaHora,motivo, activo)
         OUTPUT inserted.idCita, inserted.fecha_cita
-        VALUES (@codigoCita, @doctor_id, @paciente_id, @fechaHora, @activo);
+        VALUES (@codigoCita, @doctor_id, @paciente_id, @fechaHora,@motivo, @activo);
       `);
 
     const cita = result.recordset[0];
@@ -50,24 +47,16 @@ const agendarCita = async (req, res) => {
   }
 };
 
-
-// Obtener doctores con nombre completo y especialidad (uniendo tablas Doctor y Especialidad)
 const obtenerDoctores = async (req, res) => {
   try {
-    const pool = await sql.connect();
-
+    const pool = await poolPromise;
     const result = await pool.request()
       .query(`
-            SELECT 
-        d.idDoctor,
-        d.nombre,
-        e.nombre AS especialidad
-      FROM Doctor d
-      INNER JOIN Especialidad e ON d.especialidad_id = e.idEspecialidad
-      WHERE d.activo = 1;
-
+        SELECT d.idDoctor, d.nombre, e.nombre AS especialidad
+        FROM Doctor d
+        INNER JOIN Especialidad e ON d.especialidad_id = e.idEspecialidad
+        WHERE d.activo = 1;
       `);
-
     res.json(result.recordset);
   } catch (error) {
     console.error('Error al obtener doctores:', error);
@@ -75,14 +64,12 @@ const obtenerDoctores = async (req, res) => {
   }
 };
 
-// Obtener pacientes con nombre completo y fecha de nacimiento
 const obtenerPacientes = async (req, res) => {
   const correo = req.query.correo;
   if (!correo) return res.status(400).json({ error: 'Falta el parámetro correo' });
 
   try {
-    const pool = await sql.connect();
-
+    const pool = await poolPromise;
     const result = await pool.request()
       .input('correo', sql.VarChar(50), correo)
       .query(`
@@ -101,7 +88,6 @@ const obtenerPacientes = async (req, res) => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
-
 
 module.exports = {
   agendarCita,

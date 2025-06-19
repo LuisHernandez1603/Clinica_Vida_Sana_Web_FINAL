@@ -1,3 +1,10 @@
+/* ===== ESTILO GLOBAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding-top: 48px; /* espacio para navbar fija */
@@ -14,64 +21,61 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  background-color: #043959;
-  padding: 15px 20px;
+  background-color: rgba(4, 57, 89, 0.95);
   color: white;
-  font-weight: bold;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar__brand {
   color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
   text-decoration: none;
 }
 
 /* ===== HERO ===== */
-/* Hero sin margen superior para quedar pegado */
 .hero {
   position: relative;
-  font-family: 'Arial', sans-serif;
+  height: 20vh; /*reducir menu hero */
+  background-image: url('https://via.placeholder.com/1920x600');
   background-size: cover;
   background-position: center;
-  height: 20vh;
-  width: 100vw;
-  margin: 0;
-  padding-bottom: 30px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 60px; /* altura de la navbar */
   color: #025E73;
-  overflow: hidden;
+}
+
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7); /* overlay blanco semi-transparente */
   z-index: 1;
 }
 
-
-/* Overlay semitransparente */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(242, 242, 242, 0.7);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Asegurar que el contenido esté arriba del overlay */
-.hero > * {
+.hero__content {
   position: relative;
   z-index: 2;
 }
 
 .hero__title {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -80,27 +84,17 @@ body {
   font-size: 1.2rem;
 }
 
-.hero__action {
-  font-size: 1.4rem;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
 /* ===== MENU ===== */
 .menu {
-  padding: 50px 0 20px 0;
+  padding: 50px 20px 30px;
   text-align: center;
-  margin-top: 0; /* quitar margin negativo */
-  z-index: 1;
 }
 
 .menu__cards {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
-  margin-top: 0;
-  padding-bottom: 30px;
 }
 
 .menu__card {
@@ -110,30 +104,28 @@ body {
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   text-decoration: none;
-  z-index: 1;
 }
 
 .menu__card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .menu__icon {
   width: 100%;
   height: auto;
-  max-height: 150px;
+  max-height: 120px;
   object-fit: contain;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .menu__label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #025E73;
-  margin: 0;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -145,5 +137,13 @@ body {
 
   .menu__card {
     width: 80%;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
   }
 }
