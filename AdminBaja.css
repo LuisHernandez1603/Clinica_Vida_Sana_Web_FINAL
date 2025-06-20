@@ -1,0 +1,203 @@
+/* Fondo global del sitio con imagen fija y estilo general del body */
+body {
+  /* Color y fuente base */
+  background-color: #F2F2F2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #025E73;
+
+  /* Imagen de fondo */
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed; /* Hace que la imagen quede fija al hacer scroll */
+}
+
+/* Estilo del contenedor principal del formulario */
+.crud-admin {
+  max-width: 500px;
+  background-color: rgba(242, 242, 242, 0.9); /* fondo blanco translúcido */
+  margin: 40px auto;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título grande del formulario */
+.crud-admin__titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #043959;
+}
+
+/* Grupo de input (label + input) */
+.crud-admin__grupo {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo de las etiquetas */
+.crud-admin__label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #025E73;
+}
+
+/* Estilo para inputs y selects */
+.crud-admin__input {
+  padding: 10px 12px;
+  border: 1.8px solid #025E73;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #025E73;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Cambio de color al enfocar el input */
+.crud-admin__input:focus {
+  border-color: #043959;
+}
+
+/* Estilo general para todos los botones */
+.crud-admin__boton {
+  background-color: #d3b700;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+/* Hover del botón principal */
+.crud-admin__boton:hover {
+  background-color: #025E73;
+}
+
+/* Botón rojo para desactivar usuario */
+.crud-admin__boton--desactivar {
+  background-color: #dc3545;
+  margin-left: 10px;
+  width: auto;
+  padding: 12px 25px;
+  flex: none;
+}
+
+/* Hover del botón desactivar */
+.crud-admin__boton--desactivar:hover {
+  background-color: #a71d2a;
+}
+
+/* Contenedor de los botones: flex para alinearlos horizontalmente */
+.crud-admin__botones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Mensajes de feedback (éxito o error) */
+.crud-admin__mensaje {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  animation: fadeInOut 4s ease-in-out forwards;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+/* Mensaje de éxito */
+.mensaje-exito {
+  background-color: #28a745;
+  color: white;
+  border: 1.5px solid #218838;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+/* Mensaje de error */
+.mensaje-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1.5px solid #f5c6cb;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+}
+
+/* Animación para mostrar y ocultar los mensajes */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Estilo responsive para móviles */
+@media (max-width: 480px) {
+  .crud-admin {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .crud-admin__titulo {
+    font-size: 1.4rem;
+  }
+
+  .crud-admin__input,
+  .crud-admin__boton {
+    font-size: 1rem;
+  }
+
+  .crud-admin__mensaje {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  .crud-admin__botones {
+    flex-direction: column;
+  }
+
+  .crud-admin__boton--desactivar {
+    margin-left: 0;
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+/* Botón verde para activar usuario */
+.crud-admin__boton--activar {
+  background-color: #28a745;
+  margin-left: 10px;
+  width: auto;
+  padding: 12px 25px;
+  flex: none;
+}
+
+/* Hover del botón activar */
+.crud-admin__boton--activar:hover {
+  background-color: #218838;
+}

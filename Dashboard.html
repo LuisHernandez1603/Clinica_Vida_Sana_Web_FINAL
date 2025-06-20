@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Admin</title>
+  
+  <!-- Estilos personalizados del dashboard -->
+  <link rel="stylesheet" href="Dashboard.css" />
+</head>
+<body>
+  <!-- Contenedor principal con sidebar y contenido -->
+  <div class="dashboard-container">
+
+    <!-- Sidebar lateral con navegación -->
+    <aside class="sidebar">
+      <!-- Título del sistema/empresa -->
+      <h2 class="sidebar__title">Clínica Vida Sana</h2>
+
+      <!-- Menú de navegación vertical -->
+      <nav class="sidebar__nav">
+        <ul class="sidebar__list">
+          <!-- Ítems del menú -->
+          <li class="sidebar__item sidebar__item--active">Inicio</li>
+          <li class="sidebar__item">Pacientes</li>
+          <li class="sidebar__item">Doctores</li>
+          <li class="sidebar__item">Citas</li>
+          <li class="sidebar__item">Reportes</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal del dashboard -->
+    <main class="dashboard">
+      <!-- Título general del dashboard -->
+      <h1 class="dashboard__titulo">Dashboard-ClinicaVidaSana</h1>
+
+      <!-- Sección: Pacientes registrados por mes -->
+      <section class="dashboard__seccion">
+        <h2 class="dashboard__subtitulo">Pacientes Registrados por Mes</h2>
+
+        <!-- Tabla con datos mensuales -->
+        <table class="dashboard__tabla tabla--pacientes">
+          <thead>
+            <tr><th>Mes</th><th>Total</th></tr>
+          </thead>
+          <!-- Cuerpo de la tabla lleno desde JS -->
+          <tbody id="tabla-pacientes-body"></tbody>
+        </table>
+
+        <!-- Contenedor de gráficos: barras y pastel -->
+        <div class="dashboard__graficos-contenedor">
+          <canvas id="grafico-pacientes-barras" class="dashboard__grafico"></canvas>
+          <canvas id="grafico-pacientes-pastel" class="dashboard__grafico"></canvas>
+        </div>
+      </section>
+
+      <!-- Sección: Citas atendidas por mes -->
+      <section class="dashboard__seccion">
+        <h2 class="dashboard__subtitulo">Citas Atendidas por Mes</h2>
+
+        <!-- Tabla con datos mensuales -->
+        <table class="dashboard__tabla tabla--citas">
+          <thead>
+            <tr><th>Mes</th><th>Total</th></tr>
+          </thead>
+          <!-- Cuerpo de la tabla lleno desde JS -->
+          <tbody id="tabla-citas-body"></tbody>
+        </table>
+
+        <!-- Contenedor de gráficos: barras y pastel -->
+        <div class="dashboard__graficos-contenedor">
+          <canvas id="grafico-citas-barras" class="dashboard__grafico"></canvas>
+          <canvas id="grafico-citas-pastel" class="dashboard__grafico"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Chart.js para renderizar los gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Script que llena dinámicamente tablas y gráficos -->
+  <script src="Dashboard.js"></script>
+</body>
+</html>

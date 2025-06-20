@@ -1,0 +1,92 @@
+/* Estilo para el <body> cuando tiene la clase 'login' */
+body.login {
+  background-color: #F2F2F2; /* Color base de fondo */
+  font-family: sans-serif; /* Tipografía general */
+  display: flex; /* Centrado con Flexbox */
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ocupa el alto completo de la ventana */
+  margin: 0;
+
+  /* Imagen de fondo del login */
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top; /* Centrado vertical desde arriba */
+  background-attachment: fixed; /* Fondo fijo al hacer scroll */
+}
+
+/* Contenedor blanco del formulario */
+.login__container {
+   background-color: rgba(255, 255, 255, 0.7); /* Blanco con 70% opacidad */
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  width: 100%;
+  max-width: 400px; /* Máximo ancho */
+  text-align: center;
+}
+
+/* Título principal del login */
+.login__title {
+  color: #025E73; /* Azul clínico */
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Estilo general del formulario */
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Separación entre campos */
+}
+
+/* Etiquetas de los inputs */
+.login__label {
+  text-align: left;
+  color: #043959;
+  font-weight: 600;
+}
+
+/* Inputs de usuario y contraseña */
+.login__input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Botón de login */
+.login__button {
+  background-color: #043959;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Suaviza el hover */
+}
+
+/* Hover del botón */
+.login__button:hover {
+  background-color: #025E73;
+}
+
+/* Texto debajo del formulario */
+.login__register {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+/* Enlace a "Registrarse" */
+.login__link {
+  color: #025E73;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login__link:hover {
+  text-decoration: underline;
+}

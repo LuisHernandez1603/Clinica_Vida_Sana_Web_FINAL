@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrar Especialidad - Admin</title>
+  <!-- Enlaza el archivo CSS externo -->
+  <link rel="stylesheet" href="RegistrarEspecialidad.css" />
+</head>
+<body>
+
+  <!-- Sección principal del formulario -->
+  <section class="registrar-especialidad">
+    <!-- Título del formulario -->
+    <h2 class="registrar-especialidad__titulo">Registrar Nueva Especialidad</h2>
+
+    <!-- Formulario para registrar especialidad -->
+    <form id="form-especialidad" class="registrar-especialidad__form">
+      
+      <!-- Grupo: Nombre -->
+      <div class="registrar-especialidad__grupo">
+        <label for="nombre" class="registrar-especialidad__label">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          maxlength="50"
+          class="registrar-especialidad__input"
+          placeholder="Ej: Cardiología"
+          required
+        />
+      </div>
+
+      <!-- Grupo: Descripción -->
+      <div class="registrar-especialidad__grupo">
+        <label for="descripcion" class="registrar-especialidad__label">Descripción</label>
+        <input
+          type="text"
+          id="descripcion"
+          name="descripcion"
+          maxlength="50"
+          class="registrar-especialidad__input"
+          placeholder="Descripción breve"
+          required
+        />
+      </div>
+
+      <!-- Botón para enviar el formulario -->
+      <button type="submit" class="registrar-especialidad__boton">Registrar Especialidad</button>
+    </form>
+
+    <!-- Mensaje de feedback, oculto por defecto -->
+    <div id="mensaje" class="registrar-especialidad__mensaje" style="display:none;"></div>
+  </section>
+
+  <script src="RegistrarEspecialidad.js"></script>
+</body>
+</html>

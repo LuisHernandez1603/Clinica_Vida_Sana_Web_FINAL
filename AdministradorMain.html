@@ -1,0 +1,101 @@
+<!-- Estructura básica del documento HTML -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración del documento -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clínica Vida Sana - Módulo Administrador</title>
+  <!-- Enlace a la hoja de estilos -->
+  <link rel="stylesheet" href="AdminsitradorMain1.css" />
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+  <nav class="navbar navbar--bg">
+    <div class="navbar__container">
+      <a class="navbar__brand" href="#">Clínica Vida Sana</a>
+    </div>
+  </nav>
+
+  <!-- SECCIÓN PRINCIPAL (HERO) -->
+  <header class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Bienvenido Administrador</h1>
+      <p class="hero__subtitle">Gestiona toda la clínica desde este panel</p>
+      <h2 class="hero__accion">Selecciona tu acción</h2>
+    </div>
+  </header>
+
+  <!-- MENÚ DE OPCIONES ADMINISTRATIVAS -->
+  <section class="menu">
+    <div class="menu__cards">
+    
+      <!-- Opción: Registrar Paciente -->
+      <a href="RegistrarPaciente.html" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/2355/2355692.png" alt="Registrar Paciente" />
+        <h3 class="menu__label">Registrar Paciente</h3>
+      </a>
+
+      <!-- Opción: Registrar Doctor -->
+      <a href="RegistrarDoctor.html" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/3045/3045303.png" alt="Registrar Doctor" />
+        <h3 class="menu__label">Registrar Doctor</h3>
+      </a>
+
+      <!-- Opción: Registrar Cita -->
+      <a href="#" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/7901/7901881.png" alt="Registrar Cita" />
+        <h3 class="menu__label">Registrar Cita</h3>
+      </a>
+
+      <!-- Opción: Registrar Consulta -->
+      <a href="#" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" alt="Registrar Consulta" />
+        <h3 class="menu__label">Registrar Consulta</h3>
+      </a>
+
+      <!-- Opción: Registrar Recepcionista -->
+      <a href="AgendarRecepcionista.html" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/2707/2707135.png" alt="Registrar Recepcionista" />
+        <h3 class="menu__label">Registrar Recepcionista</h3>
+      </a>
+
+      <!-- Opción: Registrar Especialidad -->
+      <a href="RegistrarEspecialidad.html" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/3468/3468082.png" alt="Registrar Especialidad" />
+        <h3 class="menu__label">Registrar Especialidad</h3>
+      </a>
+
+      <!-- Opción: Actualizar o Eliminar usuarios -->
+      <a href="AdminBaja.html" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/185/185088.png" alt="Actualizar/Eliminar Registros" />
+        <h3 class="menu__label">Actualizar/Eliminar</h3>
+      </a>
+
+      <!-- Opción: Ver todos los registros -->
+      <a href="#" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/2658/2658219.png" alt="Ver Registros" />
+        <h3 class="menu__label">Ver Todos los Registros</h3>
+      </a>
+
+      <!-- Opción: Configurar roles y permisos -->
+      <a href="#" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/9672/9672250.png" alt="Base de Datos" />
+        <h3 class="menu__label">Roles y permisos</h3>
+      </a>
+
+      <!-- Opción: Ir al Dashboard de indicadores -->
+      <a href="Dashboard.html" class="menu__card">
+        <img class="menu__icon" src="https://cdn-icons-png.flaticon.com/512/10926/10926543.png" alt="Dashboard" />
+        <h3 class="menu__label">Dashboard</h3>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Archivo de JS (opcional, vacío por ahora) -->
+  <script src="script.js"></script>
+
+</body>
+</html>

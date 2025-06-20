@@ -1,9 +1,19 @@
 body {
-  background-color: #F2F2F2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 48px; /* espacio para navbar fija */
+  /* Imagen de fondo */
+    margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* evita scroll horizontal */
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed; /* Hace que la imagen quede fija al hacer scroll */
 }
 
-/* NAVBAR */
-.navbar--bg {
+/* ===== NAVBAR ===== */
+.navbar {
   background-color: #043959;
   padding: 15px 20px;
   color: white;
@@ -22,21 +32,42 @@ body {
   text-decoration: none;
 }
 
-/* HERO */
+/* ===== HERO ===== */
+/* Hero sin margen superior para quedar pegado */
 .hero {
-  background-image: url('https://via.placeholder.com/1920x600');
+  position: relative;
+  font-family: 'Arial', sans-serif;
   background-size: cover;
   background-position: center;
-  height: 50vh;
+  height: 20vh;
+  width: 100vw;
+  margin: 0;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: #025E73;
-  background-color: #F2F2F2;
-  margin-top: -60px;
-  padding-bottom: 50px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+
+/* Overlay semitransparente */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(242, 242, 242, 0.7);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Asegurar que el contenido esté arriba del overlay */
+.hero > * {
+  position: relative;
+  z-index: 2;
 }
 
 .hero__title {
@@ -49,18 +80,18 @@ body {
   font-size: 1.2rem;
 }
 
-.hero__accion {
+.hero__action {
   font-size: 1.4rem;
   margin-top: 15px;
   font-weight: bold;
 }
 
-/* MENÚ */
+/* ===== MENU ===== */
 .menu {
   padding: 50px 0 20px 0;
-  background-color: #F2F2F2;
   text-align: center;
-  margin-top: -150px;
+  margin-top: 0; /* quitar margin negativo */
+  z-index: 1;
 }
 
 .menu__cards {
@@ -73,7 +104,7 @@ body {
 }
 
 .menu__card {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.7); /* Blanco con 70% opacidad */
   width: 180px;
   padding: 20px 15px;
   border-radius: 12px;
@@ -82,6 +113,7 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: none;
+  z-index: 1;
 }
 
 .menu__card:hover {
@@ -104,7 +136,7 @@ body {
   margin: 0;
 }
 
-/* Responsive */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .menu__cards {
     flex-direction: column;

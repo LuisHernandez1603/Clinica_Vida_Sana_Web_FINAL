@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Definición de codificación para caracteres especiales y acentos -->
+  <meta charset="UTF-8" />
+  
+  <!-- Configuración para que la página sea responsive en dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Título de la pestaña del navegador -->
+  <title>Registrar Paciente</title>
+  
+  <!-- Enlace al archivo CSS para estilos personalizados -->
+  <link rel="stylesheet" href="RegistrarPaciente.css" />
+</head>
+
+<body>
+
+<section class="registro-paciente">
+  <!-- Contenedor principal del formulario de registro -->
+
+  <!-- Título visible en la sección -->
+  <h2 class="registro-paciente__titulo">Registrar Paciente</h2>
+
+  <!-- Mensaje de éxito (oculto por defecto, se muestra con JS) -->
+  <div class="registro-paciente__mensaje" id="mensaje-exito">
+    <span class="registro-paciente__icono">✔</span> <!-- Icono de verificación -->
+    <span id="mensaje-texto"></span> <!-- Texto dinámico del mensaje -->
+  </div>
+
+  <!-- Mensaje de error (oculto por defecto, se muestra con JS) -->
+  <div class="registro-paciente__mensajeerror" id="mensaje-error">
+    <span class="registro-paciente__icono">⛔</span> <!-- Icono de error -->
+    <span id="mensaje-error"></span> <!-- Texto dinámico del error -->
+  </div>
+
+  <!-- Formulario para registrar paciente -->
+  <form id="form-paciente" class="registro-paciente__form" action="#" method="POST">
+    
+    <!-- Grupo: número de cédula -->
+    <div class="registro-paciente__grupo">
+      <label class="registro-paciente__label" for="numero_cedula">Número de Cédula</label>
+      <input class="registro-paciente__input" type="text" id="numero_cedula" name="numero_cedula" maxlength="20" required />
+    </div>
+
+    <!-- Grupo: nombre -->
+    <div class="registro-paciente__grupo">
+      <label class="registro-paciente__label" for="nombre">Nombre</label>
+      <input class="registro-paciente__input" type="text" id="nombre" name="nombre" maxlength="100" required />
+    </div>
+
+    <!-- Grupo: apellidos -->
+    <div class="registro-paciente__grupo">
+      <label class="registro-paciente__label" for="apellidos">Apellidos</label>
+      <input class="registro-paciente__input" type="text" id="apellidos" name="apellidos" maxlength="150" required />
+    </div>
+
+    <!-- Grupo: fecha de nacimiento -->
+    <div class="registro-paciente__grupo">
+      <label class="registro-paciente__label" for="fecha_nacimiento">Fecha de Nacimiento</label>
+      <input class="registro-paciente__input" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required />
+    </div>
+
+    <!-- Grupo: correo electrónico -->
+    <div class="registro-paciente__grupo">
+      <label class="registro-paciente__label" for="correo_electronico">Correo Electrónico</label>
+      <input class="registro-paciente__input" type="email" id="correo_electronico" name="correo_electronico" maxlength="150" required />
+    </div>
+
+    <!-- Botón para enviar el formulario -->
+    <button class="registro-paciente__boton" type="submit">Registrar</button>
+  </form>
+</section>
+
+<!-- Archivo JS externo para lógica y validación del formulario -->
+<script src="registrarp.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agregar Recepcionista</title>
+  <!-- Link al archivo CSS externo para estilos -->
+  <link rel="stylesheet" href="AgendarRecepcionista.css" />
+</head>
+<body class="recepcionista">
+
+  <!-- Contenedor principal que envuelve el formulario -->
+  <section class="recepcionista__container">
+    <!-- Título principal de la página -->
+    <h1 class="recepcionista__title">Agregar Nueva Recepcionista</h1>
+
+    <!-- Formulario para ingresar datos de recepcionista -->
+    <form class="recepcionista__form" id="formRecepcionista" novalidate>
+      <!-- Campo para nombre -->
+      <label for="nombre" class="recepcionista__label">Nombre</label>
+      <input type="text" id="nombre" name="nombre" class="recepcionista__input" required />
+
+      <!-- Campo para apellidos -->
+      <label for="apellidos" class="recepcionista__label">Apellidos</label>
+      <input type="text" id="apellidos" name="apellidos" class="recepcionista__input" required />
+
+      <!-- Campo para teléfono -->
+      <label for="telefono" class="recepcionista__label">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" class="recepcionista__input" required />
+
+      <!-- Campo para correo electrónico -->
+      <label for="correo_electronico" class="recepcionista__label">Correo Electrónico</label>
+      <input type="email" id="correo_electronico" name="correo_electronico" class="recepcionista__input" required />
+
+      <!-- Campo para fecha de ingreso -->
+      <label for="fecha_ingreso" class="recepcionista__label">Fecha de Ingreso</label>
+      <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="recepcionista__input" required />
+
+      <!-- Botón para enviar el formulario -->
+      <button type="submit" class="recepcionista__button">Agregar Recepcionista</button>
+    </form>
+
+    <!-- Elemento para mostrar mensajes al usuario -->
+    <p id="mensaje" class="recepcionista__mensaje"></p>
+  </section>
+
+  <!-- Script JS externo para controlar el formulario -->
+  <script src="recepcionista.js"></script>
+
+</body>
+</html>

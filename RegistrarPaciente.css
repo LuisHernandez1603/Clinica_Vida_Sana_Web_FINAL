@@ -1,0 +1,158 @@
+/* Paleta y estilos base */
+body {
+  background-color: #F2F2F2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #025E73;
+  background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Centramos más arriba para mostrar mejor las caras */
+  background-position: center top;
+
+  background-attachment: fixed;
+}
+
+/* Contenedor principal del formulario */
+.registro-paciente {
+  max-width: 500px;
+  background-color: #F2F2F2;
+  margin: 40px auto;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+.registro-paciente__titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #043959;
+}
+
+/* Grupo de input + label */
+.registro-paciente__grupo {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Etiquetas */
+.registro-paciente__label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.registro-paciente__input {
+  padding: 10px 12px;
+  border: 1.8px solid #025E73;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #025E73;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.registro-paciente__input:focus {
+  border-color: #043959;
+}
+
+/* Botón de envío */
+.registro-paciente__boton {
+  background-color: #043959;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registro-paciente__boton:hover {
+  background-color: #025E73;
+}
+
+/* Estilo para el mensaje de éxito */
+.registro-paciente__mensaje {
+  display: none; /* Oculto por defecto */
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background-color: #28a745; /* Verde éxito */
+  color: white;
+  font-size: 1.5rem; /* Más grande */
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+  animation: fadeInOut 4s ease-in-out forwards;
+  position: relative;
+  z-index: 10;
+}
+
+/* Estilo para el mensaje de error */
+.registro-paciente__mensajeerror {
+  display: none; /* Oculto por defecto */
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background-color: #bc0000; /* Rojo error */
+  color: white;
+  font-size: 1.5rem; /* Más grande */
+  font-weight: 700;
+  animation: fadeInOut 4s ease-in-out forwards;
+  position: relative;
+  z-index: 10;
+}
+
+/* Animación para que aparezca y desaparezca suavemente */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Estilos responsive para pantallas pequeñas (teléfonos) */
+@media (max-width: 480px) {
+  .registro-paciente {
+    padding: 1rem;
+  }
+
+  .registro-paciente__titulo {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .registro-paciente__input,
+  .registro-paciente__boton {
+    font-size: 0.95rem;
+  }
+
+  .registro-paciente__mensaje,
+  .registro-paciente__mensajeerror {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    text-align: center;
+  }
+}

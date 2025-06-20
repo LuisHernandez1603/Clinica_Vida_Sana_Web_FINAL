@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrar Consulta</title>
+  <!-- Aquí enlazamos el CSS con el estilo base que ya tienes -->
+  <link rel="stylesheet" href="AgendarConsulta.css" />
+</head>
+<body>
+  <!-- Contenedor principal del formulario de consulta -->
+  <section class="consulta">
+    <!-- Título principal -->
+    <h2 class="consulta__titulo">Registrar Consulta</h2>
+
+    <!-- Formulario para que el doctor registre la consulta -->
+    <form class="consulta__form" id="form-registrar-consulta" action="#" method="POST">
+      
+      <!-- Grupo de campo para ingresar el código de la cita -->
+      <div class="consulta__grupo">
+        <label class="consulta__label" for="codigo_cita">
+          Código de Cita
+        </label>
+        <!-- Input para que el doctor escriba el código de la cita que ya se agendó -->
+        <input
+          class="consulta__input"
+          type="text"
+          id="codigo_cita"
+          name="codigo_cita"
+          maxlength="50"
+          required
+          placeholder="Ingrese código de la cita"
+        />
+        <!-- Botón para verificar que el código existe -->
+        <button type="button" id="btn-verificar-codigo" class="consulta__boton-buscar">
+          Verificar Código de Cita
+        </button>
+      </div>
+
+      <!-- Aquí se mostrarán los datos del paciente y doctor si el código es válido -->
+      <div id="info-cita" style="margin-bottom: 20px; font-weight: 600; color: #043959;">
+        <!-- Ejemplo:
+             Paciente: Juan Pérez
+             Doctor: Dra. Ana Gómez
+        -->
+      </div>
+
+      <!-- Campo para describir qué se observó o motivo de consulta -->
+      <div class="consulta__grupo">
+        <label class="consulta__label" for="descripcion">
+          Descripción
+        </label>
+        <textarea
+          class="consulta__input"
+          id="descripcion"
+          name="descripcion"
+          rows="4"
+          placeholder="Describa la consulta"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Campo para que el doctor ponga el diagnóstico que obtuvo -->
+      <div class="consulta__grupo">
+        <label class="consulta__label" for="diagnostico">
+          Diagnóstico
+        </label>
+        <textarea
+          class="consulta__input"
+          id="diagnostico"
+          name="diagnostico"
+          rows="4"
+          placeholder="Ingrese el diagnóstico"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Campo para agregar recomendaciones o indicaciones para el paciente -->
+      <div class="consulta__grupo">
+        <label class="consulta__label" for="recomendaciones">
+          Recomendaciones
+        </label>
+        <textarea
+          class="consulta__input"
+          id="recomendaciones"
+          name="recomendaciones"
+          rows="3"
+          placeholder="Ingrese recomendaciones"
+        ></textarea>
+      </div>
+
+      <!-- Campo oculto para marcar que la consulta está activa (siempre 1 al crear) -->
+      <input type="hidden" id="activo" name="activo" value="1" />
+
+      <!-- Botón para enviar el formulario y registrar la consulta -->
+      <button class="consulta__boton" type="submit">
+        Registrar Consulta
+      </button>
+    </form>
+
+    <!-- Aquí aparecerán mensajes de éxito o error, inicialmente ocultos -->
+    <p class="consulta__mensaje" id="mensaje-consulta" style="display:none;"></p>
+  </section>
+
+  <!-- Aquí podrías agregar tu JavaScript para manejar la lógica del formulario -->
+  <script src="AgendarConsulta.js"></script>
+</body>
+</html>

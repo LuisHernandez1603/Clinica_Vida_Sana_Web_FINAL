@@ -1,0 +1,166 @@
+/* ==== Reset básico ==== */
+* {
+  box-sizing: border-box; /* Incluye el padding y borde dentro del tamaño total */
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 0; /* Elimina relleno por defecto */
+}
+
+body, html {
+  height: 100%; /* Altura completa de la ventana */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente general */
+  background-color: #f4f6f8; /* Color de fondo suave */
+  color: #2c3e50; /* Color de texto base */
+}
+
+/* ==== Contenedor general del dashboard ==== */
+.dashboard-container {
+  display: flex; /* Flex para estructura en columnas */
+  min-height: 100vh; /* Altura mínima: toda la ventana */
+  overflow: hidden; /* Evita scroll accidental */
+}
+
+/* ==== Sidebar lateral fijo ==== */
+.sidebar {
+  background-color: #34495e; /* Azul oscuro */
+  color: #ecf0f1; /* Texto claro */
+  width: 220px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 0 10px rgba(0,0,0,0.1); /* Sombra sutil a la derecha */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000; /* Se asegura que esté encima del contenido */
+}
+
+/* ==== Título de la sidebar ==== */
+.sidebar__title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 1.2px;
+  user-select: none; /* No se puede seleccionar */
+}
+
+/* ==== Navegación lateral ==== */
+.sidebar__nav {
+  flex-grow: 1; /* Ocupa el espacio disponible */
+  overflow-y: auto; /* Scroll si hay muchos elementos */
+}
+
+.sidebar__list {
+  list-style: none; /* Sin viñetas */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espacio entre ítems */
+}
+
+/* ==== Ítems del menú lateral ==== */
+.sidebar__item {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+}
+
+.sidebar__item:hover {
+  background-color: #3d566e; /* Color al pasar el mouse */
+}
+
+/* ==== Ítem activo ==== */
+.sidebar__item--active {
+  background-color: #2980b9; /* Azul fuerte */
+  color: white;
+}
+
+/* ==== Contenido principal del dashboard ==== */
+.dashboard {
+  margin-left: 220px; /* Deja espacio para el sidebar */
+  padding: 2rem 3rem;
+  width: calc(100% - 220px); /* Resta el ancho del sidebar */
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+/* ==== Título principal del dashboard ==== */
+.dashboard__titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #34495e;
+}
+
+/* ==== Sección de tarjetas o gráficos ==== */
+.dashboard__seccion {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra sutil */
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==== Subtítulo dentro de sección ==== */
+.dashboard__subtitulo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #34495e;
+}
+
+/* ==== Tablas de datos ==== */
+.dashboard__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.dashboard__tabla th,
+.dashboard__tabla td {
+  border: 1px solid #ddd;
+  padding: 0.7rem 1rem;
+  text-align: left;
+}
+
+/* ==== Cabecera de la tabla ==== */
+.dashboard__tabla thead tr {
+  background-color: #2980b9;
+  color: white;
+  font-weight: 700;
+}
+
+/* ==== Contenedor de los gráficos (barras y pastel lado a lado) ==== */
+.dashboard__graficos-contenedor {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap; /* Si hay poco espacio, se colocan en fila */
+  margin-top: 1rem;
+}
+
+/* ==== Estilo de cada canvas de gráfico ==== */
+.dashboard__grafico {
+  flex: 1 1 45%; /* Ocupa 45% del contenedor, puede ajustarse */
+  max-width: 450px;
+  height: 300px !important; /* Altura fija */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2); /* Sombra azul clara */
+}
+
+/* ==== Scrollbar personalizada para sidebar si hay muchos ítems ==== */
+.sidebar__nav::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar__nav::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}

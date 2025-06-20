@@ -1,0 +1,120 @@
+/* Estilos base para el body de la página */
+body {
+  background-color: #F2F2F2; /* Color de fondo gris claro */
+  font-family: Arial, sans-serif; /* Fuente base */
+  margin: 0; /* Sin margen externo */
+  padding: 20px; /* Relleno interno */
+  color: #025E73; /* Color de texto principal */
+    background-image: url('img/equipo-de-medicos-especialistas-jovenes-de-pie-en-el-pasillo-del-hospital.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Contenedor principal del formulario */
+.registrar-especialidad {
+  max-width: 450px; /* Ancho máximo del contenedor */
+  background-color: rgba(242, 242, 242, 0.95); /* Fondo blanco translúcido */
+  margin: 50px auto; /* Margen superior e inferior, centrado horizontalmente */
+  padding: 30px 35px; /* Relleno interno del contenedor */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Título del formulario */
+.registrar-especialidad__titulo {
+  font-size: 2rem; /* Tamaño grande de fuente */
+  font-weight: 700; /* Fuente negrita */
+  margin-bottom: 25px; /* Margen debajo del título */
+  text-align: center; /* Centrar texto */
+  color: #043959; /* Color azul oscuro */
+}
+
+/* Grupo de inputs (label + input) */
+.registrar-especialidad__grupo {
+  margin-bottom: 20px; /* Espacio inferior */
+  display: flex; /* Mostrar como flexbox */
+  flex-direction: column; /* Colocar en columna */
+}
+
+/* Etiquetas de los inputs */
+.registrar-especialidad__label {
+  font-weight: 600; /* Peso medio en fuente */
+  margin-bottom: 8px; /* Margen debajo de la etiqueta */
+  color: #025E73; /* Color azul */
+}
+
+/* Estilo general para los inputs */
+.registrar-especialidad__input {
+  padding: 10px 12px; /* Relleno interno */
+  border: 1.8px solid #025E73; /* Borde azul */
+  border-radius: 6px; /* Bordes ligeramente redondeados */
+  font-size: 1rem; /* Tamaño de texto normal */
+  color: #025E73; /* Color del texto dentro del input */
+  outline: none; /* Sin outline predeterminado */
+  transition: border-color 0.3s ease; /* Transición suave para el borde */
+}
+
+/* Cambiar borde cuando el input está enfocado */
+.registrar-especialidad__input:focus {
+  border-color: #043959; /* Borde azul oscuro al enfocar */
+}
+
+/* Grupo especial para checkbox, para alinear etiqueta e input en fila */
+.registrar-especialidad__grupo--checkbox {
+  flex-direction: row; /* Organizar en fila */
+  align-items: center; /* Alinear verticalmente centrado */
+  gap: 10px; /* Espacio entre checkbox y label */
+}
+
+/* Ajustes específicos para el checkbox */
+.registrar-especialidad__grupo--checkbox input[type="checkbox"] {
+  width: auto; /* Tamaño automático */
+  height: auto;
+  cursor: pointer; /* Cursor pointer al pasar por encima */
+}
+
+/* Botón principal del formulario */
+.registrar-especialidad__boton {
+  background-color: green; /* Fondo amarillo */
+  color: white; /* Texto blanco */
+  font-weight: 700; /* Fuente negrita */
+  font-size: 1.2rem; /* Tamaño de texto grande */
+  border: none; /* Sin borde */
+  width: 100%; /* Ancho completo del contenedor */
+  border-radius: 10px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer */
+  transition: background-color 0.3s ease; /* Transición suave para color de fondo */
+  margin-top: 0.5rem; /* Margen superior */
+}
+
+/* Cambio de color del botón al pasar el mouse */
+.registrar-especialidad__boton:hover {
+  background-color: #025E73; /* Fondo azul oscuro */
+}
+
+/* Mensajes de feedback */
+.registrar-especialidad__mensaje {
+  text-align: center; /* Texto centrado */
+  margin-top: 1rem; /* Margen superior */
+  font-weight: 700; /* Fuente negrita */
+  font-size: 1.1rem; /* Tamaño de texto */
+  color: #28a745; /* Color verde para éxito */
+  user-select: none; /* No seleccionar texto accidentalmente */
+}
+
+/* Responsive para dispositivos pequeños */
+@media (max-width: 480px) {
+  .registrar-especialidad {
+    padding: 1rem; /* Menor padding */
+    max-width: 100%; /* Ancho máximo completo */
+  }
+
+  .registrar-especialidad__titulo {
+    font-size: 1.5rem; /* Texto más pequeño en título */
+  }
+
+  .registrar-especialidad__input,
+  .registrar-especialidad__boton {
+    font-size: 1rem; /* Tamaño normal para inputs y botones */
+  }
+}
